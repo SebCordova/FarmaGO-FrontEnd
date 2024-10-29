@@ -34,7 +34,7 @@ export class CreaeditarususarioComponent implements OnInit {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-      //Capturar los datos que vienen de la lista
+      //Capturar los datos que vienen de la lista s
       this.init();
     });
 
