@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 export class ListarususarioComponent implements OnInit {
   dataSource: MatTableDataSource<Usuario> = new MatTableDataSource();
 
-  displayedColumns: String[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'accion01'];
+  displayedColumns: String[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'accion01', 'accion02'];
 
   constructor(private uS:UsuarioService){}
 

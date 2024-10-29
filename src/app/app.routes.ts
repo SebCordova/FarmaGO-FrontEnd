@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { UsuarioComponent } from './components/usuario/usuario.component';
-import { ListarususarioComponent } from './components/usuario/listarususario/listarususario.component';
 import { CreaeditarususarioComponent } from './components/usuario/creaeditarususario/creaeditarususario.component';
 
 export const routes: Routes = [{
@@ -9,7 +8,7 @@ export const routes: Routes = [{
     children: [
       {
         path: 'nuevo',
-        component: ListarususarioComponent,
+        component: CreaeditarususarioComponent,
       },
       {
         path: 'ediciones/:id',

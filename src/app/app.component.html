@@ -1,1 +1,22 @@
-<app-listarususario></app-listarususario>
+<mat-toolbar
+  class="custom-toolbar"
+  style="background-color: rgb(70, 0, 0); color: white"
+>
+  <mat-icon>menu</mat-icon>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuEjemplo" style="color: white">
+      Usuarios
+    </button>
+  </div>
+</mat-toolbar>
+<mat-menu #menuEjemplo="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/usuarios" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/usuarios/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+<router-outlet></router-outlet>
+
