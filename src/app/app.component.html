@@ -8,6 +8,11 @@
     <button mat-button [matMenuTriggerFor]="menuEjemplo" style="color: white">
       Usuarios
     </button>
+
+    <button mat-button [matMenuTriggerFor]="menuProducto" style="color: white">
+      Producto
+    </button>
+
   </div>
 </mat-toolbar>
 <mat-menu #menuEjemplo="matMenu" style="background-color: rgb(70, 0, 0)">
@@ -18,5 +23,18 @@
     Registrar
   </button>
 </mat-menu>
+
+<!--Producto-->
+<mat-menu #menuProducto="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/producto" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/producto/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+
+
 <router-outlet></router-outlet>
 
