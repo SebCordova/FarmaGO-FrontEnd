@@ -1,0 +1,34 @@
+<div>
+    <div>
+        <h1>Registrar Producto</h1>
+    </div>
+    <div class="col-md-3 offset-md-3">
+        <form [formGroup]="form"  (submit)="aceptar()" style="text-align: center;">
+            <mat-form-field class="example-full-width" *ngIf="edicion">
+                <mat-label>Id</mat-label>
+                <input matInput formControlName="hidProducto">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="ácido acetilsalicílico"  formControlName="hnombreProducto">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Marca</mat-label>
+                <input matInput placeholder="Aspirina"  formControlName="hmarcaProducto">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Laboratorio</mat-label>
+                <input matInput placeholder="Bayer"  formControlName="hlabProducto">
+            </mat-form-field>
+            <br>
+
+            <div>
+                <button mat-flat-button class="btn btn-danger btn-lg" [disabled]="form.invalid">Registrar</button>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>

@@ -9,8 +9,12 @@
       Usuarios
     </button>
 
-    <button mat-button [matMenuTriggerFor]="menuProducto" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuProducto" style="color: white"> <!--Producto-->
       Producto
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuProductoxbotica" style="color: white"> <!--ProductoxBotica-->
+      ProductoxBotica
     </button>
 
   </div>
@@ -26,10 +30,20 @@
 
 <!--Producto-->
 <mat-menu #menuProducto="matMenu" style="background-color: rgb(70, 0, 0)">
-  <button mat-menu-item routerLink="/producto" style="color: black">
+  <button mat-menu-item routerLink="/productos" style="color: black">
     Listar
   </button>
-  <button mat-menu-item routerLink="/producto/nuevo" style="color: black">
+  <button mat-menu-item routerLink="/productos/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<!--ProductoxBotica-->
+<mat-menu #menuProductoxbotica="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/productosxbotica" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/productosxbotica/nuevo" style="color: black">
     Registrar
   </button>
 </mat-menu>

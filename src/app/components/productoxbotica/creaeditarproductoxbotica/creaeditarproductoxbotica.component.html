@@ -1,0 +1,43 @@
+<div>
+    <div>
+        <h1>Registrar ProductoxBotica</h1>
+    </div>
+    <div class="col-md-3 offset-md-3">
+        <form [formGroup]="form"  (submit)="aceptar()" style="text-align: center;">
+            <mat-form-field class="example-full-width" *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="hidProductoxBotica">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>PrecioProducto</mat-label>
+                <input matInput placeholder="50.6"  formControlName="hprecioproducto">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Fecha Emisión</mat-label>
+                <input matInput placeholder="10/04/2002"  formControlName="hfechaemision">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Fecha Vencimiento</mat-label>
+                <input matInput placeholder="10/10/2020"  formControlName="hfechavencimiento">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Botica</mat-label>
+                <input matInput placeholder="MiFarma"  formControlName="hbotica"                >
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Producto</mat-label>
+                <input matInput type="password" formControlName="hproducto" minlength="6">
+            </mat-form-field>
+            <br>
+            <div>
+                <button mat-flat-button class="btn btn-danger btn-lg" [disabled]="form.invalid">Registrar</button>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>
