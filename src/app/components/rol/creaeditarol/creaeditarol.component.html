@@ -1,0 +1,36 @@
+<div>
+    <div>
+        <h1>Asignar Roles</h1>
+    </div>
+    <div class="col-md-3 offset-md-3">
+        <form [formGroup]="form"  (submit)="aceptar()" style="text-align: center;">
+            <mat-form-field class="example-full-width" *ngIf="edicion">
+                <mat-label>Codigo</mat-label>
+                <input matInput formControlName="hcodigo">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Rol</mat-label>
+                <mat-select formControlName="hrolUsuario">
+                  @for (food of listaRoles; track food) {
+                    <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Usuarios</mat-label>
+                <mat-select formControlName="huser">
+                  @for (food of listaUsuarios; track food) {
+                    <mat-option [value]="food.idUsuario">{{food.correoUsuario}}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <div>
+                <button mat-flat-button class="btn btn-danger btn-lg" [disabled]="form.invalid">Registrar</button>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>
