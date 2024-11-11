@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
-import { UsuarioComponent } from './components/usuario/usuario.component';
+import { DistritoComponent } from './components/distrito/distrito.component';
+import { CreaeditadistritoComponent } from './components/distrito/creaeditadistrito/creaeditadistrito.component';
+import { OrdencompraComponent } from './components/ordencompra/ordencompra.component';
+import { CreaeditaordencompraComponent } from './components/ordencompra/creaeditaordencompra/creaeditaordencompra.component';
 import { CreaeditarususarioComponent } from './components/usuario/creaeditarususario/creaeditarususario.component';
 import { BoticaComponent } from './components/botica/botica.component';
 import { RolComponent } from './components/rol/rol.component';
@@ -11,6 +14,7 @@ import { ProductoxboticaComponent } from './components/productoxbotica/productox
 import { CreaeditarproductoxboticaComponent } from './components/productoxbotica/creaeditarproductoxbotica/creaeditarproductoxbotica.component';
 import { DetalleordenComponent } from './components/detalleorden/detalleorden.component';
 import { CreaeditardetalleordenComponent } from './components/detalleorden/creaeditardetalleorden/creaeditardetalleorden.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 export const routes: Routes = [
   {
@@ -19,11 +23,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'nuevo',
-        component: CreaeditarususarioComponent,
+        component: CreaeditadistritoComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditarususarioComponent,
+        component: CreaeditadistritoComponent,
       },
     ],
   },
@@ -100,5 +104,31 @@ export const routes: Routes = [
     },
   ],
 
+},{
+  path: 'ordenescompras',
+  component: OrdencompraComponent,
+  children: [
+    {
+      path: 'nuevo',
+      component: CreaeditaordencompraComponent,
+    },
+    {
+      path: 'ediciones/:id',
+      component: CreaeditaordencompraComponent,
+    },
+  ],
+},{
+  path: 'distritos',
+  component: DistritoComponent,
+  children: [
+    {
+      path: 'nuevo',
+      component: CreaeditadistritoComponent,
+    },
+    {
+      path: 'ediciones/:id',
+      component: CreaeditadistritoComponent,
+    },
+  ],
 }
 ];

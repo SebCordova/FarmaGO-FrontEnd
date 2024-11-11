@@ -3,6 +3,7 @@
   style="background-color: rgb(70, 0, 0); color: white"
 >
   <div>
+
     <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white">
       <mat-icon>account_box</mat-icon> Usuarios
     </button>
@@ -11,6 +12,7 @@
     </button>
     <button mat-button [matMenuTriggerFor]="menuRol" style="color: white">
       <mat-icon>assignment_ind</mat-icon> Roles
+
     </button>
 
     <button mat-button [matMenuTriggerFor]="menuProducto" style="color: white"> <!--Producto-->
@@ -23,6 +25,14 @@
 
     <button mat-button [matMenuTriggerFor]="menuDetalleOrden" style="color: white"> <!--detalleOrden-->
       DetalleOrden
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuEjemplo" style="color: white">
+      Distritos
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuOrden" style="color: white">
+      OrdenCompra
     </button>
 
   </div>
@@ -85,5 +95,22 @@
   </button>
 </mat-menu>
 
+<mat-menu #menuEjemplo="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/distritos" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/distritos/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<mat-menu #menuOrden="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/ordenescompras" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/ordenescompras/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
 
 <router-outlet></router-outlet>
