@@ -2,19 +2,99 @@
   class="custom-toolbar"
   style="background-color: rgb(70, 0, 0); color: white"
 >
-  <mat-icon>menu</mat-icon>
-
   <div>
+
+    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white">
+      <mat-icon>account_box</mat-icon> Usuarios
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuBotica" style="color: white">
+      <mat-icon>business_center</mat-icon> Boticas
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white">
+      <mat-icon>assignment_ind</mat-icon> Roles
+
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuProducto" style="color: white"> <!--Producto-->
+      Producto
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuProductoxbotica" style="color: white"> <!--ProductoxBotica-->
+      ProductoxBotica
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuDetalleOrden" style="color: white"> <!--detalleOrden-->
+      DetalleOrden
+    </button>
+
     <button mat-button [matMenuTriggerFor]="menuEjemplo" style="color: white">
       Distritos
     </button>
-  </div>
-  <div>
+
     <button mat-button [matMenuTriggerFor]="menuOrden" style="color: white">
       OrdenCompra
     </button>
+
   </div>
 </mat-toolbar>
+
+<mat-menu #menuUsuario="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/usuarios" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/usuarios/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<mat-menu #menuRol="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/roles" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/roles/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<mat-menu #menuBotica="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/boticas" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/boticas/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<!--Producto-->
+<mat-menu #menuProducto="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/productos" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/productos/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<!--ProductoxBotica-->
+<mat-menu #menuProductoxbotica="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/productosxbotica" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/productosxbotica/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<!--detalleOrden-->
+<mat-menu #menuDetalleOrden="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/detalleorden" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/detalleorden/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
 <mat-menu #menuEjemplo="matMenu" style="background-color: rgb(70, 0, 0)">
   <button mat-menu-item routerLink="/distritos" style="color: black">
     Listar
@@ -23,6 +103,7 @@
     Registrar
   </button>
 </mat-menu>
+
 <mat-menu #menuOrden="matMenu" style="background-color: rgb(70, 0, 0)">
   <button mat-menu-item routerLink="/ordenescompras" style="color: black">
     Listar
@@ -31,5 +112,5 @@
     Registrar
   </button>
 </mat-menu>
-<router-outlet></router-outlet>
 
+<router-outlet></router-outlet>

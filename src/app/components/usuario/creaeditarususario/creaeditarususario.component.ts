@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -15,10 +16,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 
+
 @Component({
   selector: 'app-creaeditarususario',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, CommonModule, MatSelectModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, CommonModule, MatSelectModule, FormsModule],
   templateUrl: './creaeditarususario.component.html',
   styleUrl: './creaeditarususario.component.css',
 })
@@ -27,6 +29,8 @@ export class CreaeditarususarioComponent implements OnInit {
   usuario: Usuario = new Usuario();
   id: number = 0;
   edicion: boolean = false;
+
+  errorMessage = signal('');
 
   constructor(
     private uS: UsuarioService,
@@ -48,7 +52,7 @@ export class CreaeditarususarioComponent implements OnInit {
       hnomUsuario: ['', Validators.required],
       hapelUsuario: ['', Validators.required],
       hdirUsuario: ['', Validators.required],
-      hcorreoUsuario: ['', Validators.required],
+      hcorreoUsuario: ['', [Validators.required, Validators.email]],
       hclaveUsuario: ['', Validators.required],
     });
   }
@@ -77,6 +81,7 @@ export class CreaeditarususarioComponent implements OnInit {
     }
     this.router.navigate(['usuarios']);
   }
+
   init() {
     if (this.edicion == true) {
       this.uS.listId(this.id).subscribe((data) => {
@@ -91,4 +96,6 @@ export class CreaeditarususarioComponent implements OnInit {
       });
     }
   }
+
 }
+
