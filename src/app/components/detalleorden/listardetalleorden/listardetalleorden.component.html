@@ -1,0 +1,40 @@
+<div>
+    <div>
+        <h1>Detalle de Orden Registrados</h1>
+    </div>
+    <div style="width: 90%; margin-left: auto; margin-right: auto;">
+
+      <div class="card-container">
+        <mat-card *ngFor="let element of dataDO.data" class="mat-card-example">
+          <mat-card-header>
+            <mat-card-title>{{ element.idDetalleOrden }}</mat-card-title>
+          </mat-card-header>
+
+          <img mat-card-image src=" https://scrconsultores.com.pe/wp-content/uploads/2023/11/2-1-600x400.png" alt="Producto farmaceutico">
+          <mat-card-content>
+            <p>Cantidad del Producto: {{ element.cantidadProducto }}</p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>Precio: {{ element.precioxCantidadProducto }}</p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>Orden de Compra: {{ element.ocompra.idOrdenCompra }}</p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>PXB: {{ element.pxBotica.producto.nombreProducto }} ({{ element.pxBotica.botica.nombreBotica }})</p>
+          </mat-card-content>
+
+      
+          <mat-card-actions >
+            <mat-icon style="color: red;  margin-right: auto;" (click)="eliminar(element.idDetalleOrden)">delete</mat-icon>
+         
+           <mat-icon style="color: purple; margin-left: auto;" [routerLink]="['edicionesdo', element.idDetalleOrden]">edit</mat-icon>
+          </mat-card-actions>
+
+       
+        </mat-card>
+       
+      </div>
+
+    </div>
+  </div>

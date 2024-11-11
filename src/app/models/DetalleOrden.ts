@@ -5,6 +5,6 @@ export class DetalleOrden{
     idDetalleOrden:number = 0
     cantidadProducto:number = 0
     precioxCantidadProducto:number = 0
-    Ocompra:OrdenCompra = new OrdenCompra()
-    PxBotica:ProductoxBotica = new ProductoxBotica()
+    ocompra:OrdenCompra = new OrdenCompra()
+    pxBotica:ProductoxBotica = new ProductoxBotica()
 }

@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { ListarususarioComponent } from './components/usuario/listarususario/listarususario.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { ListarususarioComponent } from './components/usuario/listarususario/lis
     MatIconModule,
     MatMenuModule,
     ListarususarioComponent,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

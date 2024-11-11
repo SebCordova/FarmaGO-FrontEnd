@@ -1,0 +1,66 @@
+<div>
+    <div>
+        <h1>Registrar ProductoxBotica</h1>
+    </div>
+    <div class="col-md-3 offset-md-3">
+        <form [formGroup]="form"  (submit)="aceptar()" style="text-align: center;">
+            <mat-form-field class="example-full-width" *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="hidProductoxBotica">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>PrecioProducto</mat-label>
+                <input matInput placeholder="50.6"  formControlName="hprecioproducto">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field>
+                <mat-label>Fecha de Emisión</mat-label>
+                <input matInput [matDatepicker]="picker1" placeholder="MM/DD/YYYY" formControlName="hfechaemision">
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              
+            <br>
+
+            <mat-form-field>
+                <mat-label>Fecha de Vencimiento</mat-label>
+                <input matInput [matDatepicker]="picker2" placeholder="MM/DD/YYYY" formControlName="hfechavencimiento">
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            <br>
+
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Botica</mat-label>
+                <mat-select formControlName="hbotica">
+                  @for (pxb of listapxb; track pxb) {
+                    <mat-option [value]="pxb.botica.idBotica">{{pxb.botica.nombreBotica}}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+       <!--   <mat-form-field class="example-full-width">
+                <mat-label>Producto</mat-label>
+                <input matInput placeholder="Panadol"  formControlName="hproducto" minlength="6">
+            </mat-form-field>
+            -->  
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Producto</mat-label>
+                <mat-select formControlName="hproducto">
+                  @for (pxb of listapxb; track pxb) {
+                    <mat-option [value]="pxb.producto.idProducto">{{pxb.producto.nombreProducto}}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+
+            <br>
+            <div>
+                <button mat-flat-button class="btn btn-danger btn-lg" [disabled]="form.invalid">Registrar</button>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>
