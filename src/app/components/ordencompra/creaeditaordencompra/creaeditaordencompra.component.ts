@@ -32,8 +32,8 @@ export class CreaeditaordencompraComponent implements OnInit{
   edicion: boolean = false;
 
   listaEstados: { value: string; viewValue: string }[] = [
-    { value: 'True', viewValue: 'True' },
-    { value: 'False', viewValue: 'False' },
+    { value: 'en proceso', viewValue: 'en proceso' },
+    { value: 'completo', viewValue: 'completo' },
   ];
 
   listaUsuarios: Usuario[] = [];

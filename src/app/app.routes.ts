@@ -15,6 +15,8 @@ import { CreaeditarproductoxboticaComponent } from './components/productoxbotica
 import { DetalleordenComponent } from './components/detalleorden/detalleorden.component';
 import { CreaeditardetalleordenComponent } from './components/detalleorden/creaeditardetalleorden/creaeditardetalleorden.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { ComentarioComponent } from './components/comentario/comentario.component';
+import { CreaeditacomentarioComponent } from './components/comentario/creaeditacomentario/creaeditacomentario.component';
 
 export const routes: Routes = [
   {
@@ -128,6 +130,19 @@ export const routes: Routes = [
     {
       path: 'ediciones/:id',
       component: CreaeditadistritoComponent,
+    },
+  ],
+},{
+  path: 'comentarios',
+  component: ComentarioComponent,
+  children: [
+    {
+      path: 'nuevo',
+      component: CreaeditacomentarioComponent,
+    },
+    {
+      path: 'ediciones/:id',
+      component: CreaeditacomentarioComponent,
     },
   ],
 }
