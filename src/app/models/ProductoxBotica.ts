@@ -5,7 +5,7 @@ export class ProductoxBotica{
     idProductoxBotica:number = 0
     precioproducto:number = 0
     fechaemision:Date = new Date()
-    fechavencimiento = new Date()
+    fechavencimiento:Date = new Date()
     botica:Botica = new Botica()
     producto:Producto = new Producto()
 }
