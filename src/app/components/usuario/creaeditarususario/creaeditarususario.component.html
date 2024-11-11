@@ -26,12 +26,14 @@
             <br>
             <mat-form-field class="example-full-width">
                 <mat-label>Correo Electronico</mat-label>
-                <input matInput placeholder="Ej. usuario@example.com"  formControlName="hcorreoUsuario" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"                >
+                <input matInput placeholder="Ej. usuario@example.com"  formControlName="hcorreoUsuario">
+                <mat-error *ngIf="form.value.hcorreoUsuario">Ingrese un correo valido</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
                 <mat-label>Contraseña</mat-label>
                 <input matInput type="password" formControlName="hclaveUsuario" minlength="6">
+                <mat-error *ngIf="form.value.hclaveUsuario">La contraseña debe tener un mínimo de 6 caracteres</mat-error>
             </mat-form-field>
             <br>
             <div>
