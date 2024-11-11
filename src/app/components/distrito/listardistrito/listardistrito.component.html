@@ -1,0 +1,48 @@
+<div>
+    <div style="text-align: center; margin: 5%">
+      <h1>Lista de Ambientes</h1>
+    </div>
+    <div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="c1">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.idDistrito }}</td>
+        </ng-container>
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="c2">
+          <th mat-header-cell *matHeaderCellDef>Distrito</th>
+          <td mat-cell *matCellDef="let element">{{ element.nomDistrito }}</td>
+        </ng-container>
+  
+        <!-- Weight Column -->
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            (click)="eliminar(element.idDistrito)"
+          >
+          <mat-icon>delete</mat-icon>
+          </td>
+        </ng-container>
+  
+        <!-- Weight Column -->
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+          >
+          <button mat-raised-button [routerLink]="['ediciones', element.idDistrito]">
+            <mat-icon style = "color:#3b1d9a">edit</mat-icon>
+          </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
