@@ -103,7 +103,7 @@ export class CreaeditacomentarioComponent implements OnInit {
         });
       }
     }
-    this.router.navigate(['ordenescompras']);
+    this.router.navigate(['comentarios']);
   }
   init() {
     if (this.edicion) {
