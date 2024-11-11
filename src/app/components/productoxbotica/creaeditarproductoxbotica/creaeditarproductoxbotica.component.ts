@@ -8,11 +8,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-creaeditarproductoxbotica',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, CommonModule, MatSelectModule],
+  providers: [provideNativeDateAdapter()], // esto se agrega para poder usar el Date
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, CommonModule, MatSelectModule,MatDatepickerModule],
   templateUrl: './creaeditarproductoxbotica.component.html',
   styleUrl: './creaeditarproductoxbotica.component.css'
 })
@@ -22,7 +25,7 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
   pxb: ProductoxBotica = new ProductoxBotica();
   id: number = 0;
   edicion: boolean = false;
-
+  listapxb: ProductoxBotica[] = [];
   constructor(
     private pxbS: ProductoxboticaService,
     private formBuilder: FormBuilder,
@@ -36,7 +39,7 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
       this.id = data['id'];
       this.edicion = data['id'] != null;
       //Capturar los datos que vienen de la lista s
-      this.ngOnInit();
+      this.init();
     });
 
     this.form = this.formBuilder.group({
@@ -47,6 +50,12 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
       hbotica: ['', Validators.required],
       hproducto: ['', Validators.required],
     });
+
+
+
+    this.pxbS.list().subscribe(data =>{
+      this.listapxb = data
+    })
   }
 
   aceptar(): void {
@@ -79,11 +88,11 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
       this.pxbS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hidProductoxBotica: new FormControl(data.idProductoxBotica),
-          hnomUsuario: new FormControl(data.precioproducto),
-          hapelUsuario: new FormControl(data.fechaemision),
-          hdirUsuario: new FormControl(data.fechavencimiento),
-          hcorreoUsuario: new FormControl(data.botica),
-          hclaveUsuario: new FormControl(data.producto),
+          hprecioproducto: new FormControl(data.precioproducto),
+          hfechaemision: new FormControl(data.fechaemision),
+          hfechavencimiento: new FormControl(data.fechavencimiento),
+          hbotica: new FormControl(data.botica.idBotica),
+          hproducto: new FormControl(data.producto.idProducto),
         });
       });
     }

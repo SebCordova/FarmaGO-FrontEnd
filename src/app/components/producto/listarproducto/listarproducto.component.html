@@ -3,6 +3,36 @@
         <h1>Productos Registrados</h1>
     </div>
     <div style="width: 90%; margin-left: auto; margin-right: auto;">
+
+      <div class="card-container">
+        <mat-card *ngFor="let element of datas" class="mat-card-example">
+          <mat-card-header>
+            <mat-card-title>{{ element.nombreProducto }}</mat-card-title>
+          </mat-card-header>
+
+          <img mat-card-image src=" https://scrconsultores.com.pe/wp-content/uploads/2023/11/2-1-600x400.png" alt="Producto farmaceutico">
+          <mat-card-content>
+            <p>Laboratorio: {{ element.labProducto }}</p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>Marca: {{ element.marcaProducto }}</p>
+          </mat-card-content>
+
+      
+          <mat-card-actions >
+            <mat-icon style="color: red; margin-right: auto;" (click)="eliminar(element.idProducto)">delete</mat-icon>
+           <mat-icon style="color: purple; margin-left: auto;" [routerLink]="['edicionesp', element.idProducto]">edit</mat-icon>
+          </mat-card-actions>
+
+       
+        </mat-card>
+       
+      </div>
+
+    </div>
+  </div>
+
+<!--
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="c1">
                 <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -48,3 +78,4 @@
         <br>
     </div>
 </div>
+-->

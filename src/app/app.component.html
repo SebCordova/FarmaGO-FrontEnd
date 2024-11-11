@@ -17,6 +17,10 @@
       ProductoxBotica
     </button>
 
+    <button mat-button [matMenuTriggerFor]="menuDetalleOrden" style="color: white"> <!--detalleOrden-->
+      DetalleOrden
+    </button>
+
   </div>
 </mat-toolbar>
 <mat-menu #menuEjemplo="matMenu" style="background-color: rgb(70, 0, 0)">
@@ -48,6 +52,15 @@
   </button>
 </mat-menu>
 
+<!--detalleOrden-->
+<mat-menu #menuDetalleOrden="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/detalleorden" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/detalleorden/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
 
 
 <router-outlet></router-outlet>

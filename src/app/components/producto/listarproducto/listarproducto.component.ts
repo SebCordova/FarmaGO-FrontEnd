@@ -4,28 +4,33 @@ import { Producto } from '../../../models/Producto';
 import { ProductoService } from '../../../services/producto.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarproducto',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, RouterModule],
+  imports: [MatTableModule, MatIconModule, RouterModule,MatCardModule,CommonModule],
   templateUrl: './listarproducto.component.html',
   styleUrl: './listarproducto.component.css'
 })
 export class ListarproductoComponent {
 
-  dataSource: MatTableDataSource<Producto> = new MatTableDataSource();
 
-  displayedColumns: String[] = ['c1', 'c2', 'c3', 'c4', 'accion01', 'accion02'];
+  datas: any[] = []; 
 
   constructor(private pS:ProductoService){}
 
   ngOnInit(): void {
+
+
     this.pS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idProducto - b.idProducto));
+      this.datas = data.sort((a, b) => a.idProducto - b.idProducto);
     });
+
+    // O si necesitas traer la segunda lista también
     this.pS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idProducto - b.idProducto));
+      this.datas = data.sort((a, b) => a.idProducto - b.idProducto);
     });
     
   }

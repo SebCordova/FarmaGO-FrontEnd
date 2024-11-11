@@ -5,6 +5,8 @@ import { ProductoComponent } from './components/producto/producto.component';
 import { CreaeditarproductoComponent } from './components/producto/creaeditarproducto/creaeditarproducto.component';
 import { ProductoxboticaComponent } from './components/productoxbotica/productoxbotica.component';
 import { CreaeditarproductoxboticaComponent } from './components/productoxbotica/creaeditarproductoxbotica/creaeditarproductoxbotica.component';
+import { DetalleordenComponent } from './components/detalleorden/detalleorden.component';
+import { CreaeditardetalleordenComponent } from './components/detalleorden/creaeditardetalleorden/creaeditardetalleorden.component';
 
 export const routes: Routes = [{
     path: 'usuarios',
@@ -47,6 +49,23 @@ export const routes: Routes = [{
         component: CreaeditarproductoxboticaComponent,
       },
     ],
+
+}
+
+,{
+  
+  path: 'detalleorden',
+  component: DetalleordenComponent,
+  children: [
+    {
+      path: 'nuevo',
+      component: CreaeditardetalleordenComponent,
+    },
+    {
+      path: 'edicionesdo/:id',
+      component: CreaeditardetalleordenComponent,
+    },
+  ],
 
 }
 
