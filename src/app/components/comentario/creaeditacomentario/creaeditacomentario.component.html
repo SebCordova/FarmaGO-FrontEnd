@@ -1,1 +1,59 @@
-<p>creaeditacomentario works!</p>
+<div>
+    <div><h1>Registro de Comentario</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="aceptar()">
+        
+          <mat-form-field class="example-full-width">
+          <mat-label>Codigo Comentario</mat-label>
+          <input
+            matInput
+            placeholder="Ejem. TV"
+            formControlName="hcodigo"
+          />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Detalle</mat-label>
+            <input matInput placeholder="7500" formControlName="hdetalle" />
+          </mat-form-field>
+          <br />
+
+        <mat-form-field>
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br />
+          <br />
+  
+          <mat-form-field>
+            <mat-label>Producto por Botica</mat-label>
+            <mat-select formControlName="hproxbot">
+              @for (food of listaProductoXBotica; track food) {
+              <mat-option [value]="food.producto.nombreProducto">{{ food.producto.nombreProducto }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <br />
+  
+        <mat-form-field>
+          <mat-label>Usuarios</mat-label>
+          <mat-select formControlName="husuario">
+            @for (food of listaUsuario; track food) {
+            <mat-option [value]="food.nomUsuario">{{ food.nomUsuario }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <div>
+          <button mat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
