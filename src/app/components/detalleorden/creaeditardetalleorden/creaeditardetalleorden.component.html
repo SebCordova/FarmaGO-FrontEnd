@@ -1,6 +1,6 @@
 <div>
     <div>
-        <h1>Registrar ProductoxBotica</h1>
+        <h1>Registrar Detalle de Orden</h1>
     </div>
     <div class="col-md-3 offset-md-3">
         <form [formGroup]="form"  (submit)="aceptar()" style="text-align: center;">
@@ -15,7 +15,7 @@
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-                <mat-label>Precio por toda la cantidad</mat-label>
+                <mat-label>Precio por cantidad (PEN)</mat-label>
                 <input matInput placeholder="75.50"  formControlName="hprecioxCantidadProducto">
             </mat-form-field>
             <br>
@@ -24,7 +24,7 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Orden de Compra</mat-label>
                 <mat-select formControlName="hOcompra">
-                  @for (do of listaDO; track do) {
+                  @for (do of listaDOUnicosOC; track do) {
                     <mat-option [value]="do.ocompra.idOrdenCompra">{{do.ocompra.idOrdenCompra}}</mat-option>
                   }
                 </mat-select>
@@ -34,9 +34,9 @@
             <br>
 
             <mat-form-field class="example-full-width">
-                <mat-label>Cod. Producto(Botica)</mat-label>
+                <mat-label>Producto(Botica)</mat-label>
                 <mat-select formControlName="hPxBotica">
-                  @for (do of listaDO; track do) {
+                  @for (do of listaDOUnicosPXB; track do) {
                     <mat-option [value]="do.pxBotica.idProductoxBotica">{{do.pxBotica.producto.nombreProducto}}({{ do.pxBotica.botica.nombreBotica }})</mat-option>
                   }
                 </mat-select>

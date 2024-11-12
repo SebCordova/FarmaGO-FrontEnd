@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
+import { Init } from 'v8';
 
 @Component({
   selector: 'app-creaeditardetalleorden',
@@ -16,13 +17,15 @@ import { MatSelectModule } from '@angular/material/select';
   templateUrl: './creaeditardetalleorden.component.html',
   styleUrl: './creaeditardetalleorden.component.css'
 })
-export class CreaeditardetalleordenComponent {
+export class CreaeditardetalleordenComponent{
 
   form: FormGroup = new FormGroup({});
   do: DetalleOrden = new DetalleOrden();
   id: number = 0;
   edicion: boolean = false;
   listaDO: DetalleOrden[] = [];
+  listaDOUnicosOC: DetalleOrden[] = [];
+  listaDOUnicosPXB: DetalleOrden[] = [];
 
   constructor(
     private doS: DetalleordenService,
@@ -54,7 +57,19 @@ export class CreaeditardetalleordenComponent {
       this.listaDO = data
     })
 
+    this.listaDOUnicosOC = this.listaDO.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.ocompra.idOrdenCompra === value.ocompra.idOrdenCompra
+      ))
+    );
 
+    this.listaDOUnicosPXB = this.listaDO.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.pxBotica.idProductoxBotica === value.pxBotica.idProductoxBotica
+      ))
+    );
+
+ 
   }
 
   aceptar(): void {
