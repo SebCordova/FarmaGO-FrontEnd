@@ -10,7 +10,7 @@
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-                <mat-label>PrecioProducto</mat-label>
+                <mat-label>PrecioProducto (PEN)</mat-label>
                 <input matInput placeholder="50.6"  formControlName="hprecioproducto">
             </mat-form-field>
             <br>
@@ -36,7 +36,7 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Botica</mat-label>
                 <mat-select formControlName="hbotica">
-                  @for (pxb of listapxb; track pxb) {
+                  @for (pxb of listapxbUnicosBot; track pxb) {
                     <mat-option [value]="pxb.botica.idBotica">{{pxb.botica.nombreBotica}}</mat-option>
                   }
                 </mat-select>
@@ -50,7 +50,7 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Producto</mat-label>
                 <mat-select formControlName="hproducto">
-                  @for (pxb of listapxb; track pxb) {
+                  @for (pxb of listapxbUnicosPro; track pxb) {
                     <mat-option [value]="pxb.producto.idProducto">{{pxb.producto.nombreProducto}}</mat-option>
                   }
                 </mat-select>

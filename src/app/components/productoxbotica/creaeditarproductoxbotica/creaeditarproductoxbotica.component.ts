@@ -26,6 +26,9 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   listapxb: ProductoxBotica[] = [];
+  listapxbUnicosPro: ProductoxBotica[] = [];
+  listapxbUnicosBot: ProductoxBotica[] = [];
+
   constructor(
     private pxbS: ProductoxboticaService,
     private formBuilder: FormBuilder,
@@ -40,6 +43,7 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
       this.edicion = data['id'] != null;
       //Capturar los datos que vienen de la lista s
       this.init();
+      
     });
 
     this.form = this.formBuilder.group({
@@ -56,6 +60,19 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
     this.pxbS.list().subscribe(data =>{
       this.listapxb = data
     })
+
+
+    this.listapxbUnicosPro = this.listapxb.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.producto.idProducto === value.producto.idProducto
+      ))
+    );
+
+    this.listapxbUnicosBot = this.listapxb.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.botica.idBotica === value.botica.idBotica
+      ))
+    );
   }
 
   aceptar(): void {
