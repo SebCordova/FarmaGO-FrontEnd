@@ -36,7 +36,7 @@
             <mat-label>Producto por Botica</mat-label>
             <mat-select formControlName="hproxbot">
               @for (food of listaProductoXBotica; track food) {
-              <mat-option [value]="food.idProductoxBotica">{{ food.idProductoxBotica }}</mat-option>
+              <mat-option [value]="food.producto.nombreProducto">{{ food.producto.nombreProducto }}</mat-option>
               }
             </mat-select>
           </mat-form-field>

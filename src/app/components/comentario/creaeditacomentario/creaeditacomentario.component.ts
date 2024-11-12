@@ -86,7 +86,7 @@ export class CreaeditacomentarioComponent implements OnInit {
       this.comen.idComentario = this.form.value.hcodigo;
       this.comen.detalleComentario = this.form.value.hdetalle;
       this.comen.fechaComentario = this.form.value.hfecha;
-      this.comen.PxBotica.idProductoxBotica = this.form.value.hproxbot;
+      this.comen.pxBotica.producto.nombreProducto = this.form.value.hproxbot;
       this.comen.usuario.nomUsuario = this.form.value.husuario;
 
       if (this.edicion) {
@@ -112,7 +112,7 @@ export class CreaeditacomentarioComponent implements OnInit {
           hcodigo: new FormControl(data.idComentario),
           hfecha: new FormControl(data.detalleComentario),
           hmonto: new FormControl(data.fechaComentario),
-          hestado: new FormControl(data.PxBotica.idProductoxBotica),
+          hproxbot: new FormControl(data.pxBotica.producto.nombreProducto),
           husuario: new FormControl(data.usuario.nomUsuario),
         });
       });

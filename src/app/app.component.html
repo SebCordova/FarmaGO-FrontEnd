@@ -35,6 +35,10 @@
       OrdenCompra
     </button>
 
+    <button mat-button [matMenuTriggerFor]="menuComentario" style="color: white">
+      Comentario
+    </button>
+
   </div>
 </mat-toolbar>
 
@@ -109,6 +113,15 @@
     Listar
   </button>
   <button mat-menu-item routerLink="/ordenescompras/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<mat-menu #menuComentario="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/comentarios" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/comentarios/nuevo" style="color: black">
     Registrar
   </button>
 </mat-menu>
