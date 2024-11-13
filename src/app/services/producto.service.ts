@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Producto } from '../models/Producto';
 import { HttpClient } from '@angular/common/http';
 
@@ -43,4 +43,8 @@ export class ProductoService {
   update(producto: Producto) {
     return this.http.put(this.url, producto);
   }
+
+ /* uploadImage(file: FormData): Observable<string> {
+    return this.http.post<string>( `${this.url}/upload`, file);
+  }*/
 }

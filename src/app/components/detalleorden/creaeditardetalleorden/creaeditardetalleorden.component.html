@@ -15,7 +15,7 @@
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-                <mat-label>Precio por toda la cantidad</mat-label>
+                <mat-label>Precio por cantidad (PEN)</mat-label>
                 <input matInput placeholder="75.50"  formControlName="hprecioxCantidadProducto">
             </mat-form-field>
             <br>
@@ -34,7 +34,7 @@
             <br>
 
             <mat-form-field class="example-full-width">
-                <mat-label>Cod. Producto(Botica)</mat-label>
+                <mat-label>Producto(Botica)</mat-label>
                 <mat-select formControlName="hPxBotica">
                   @for (pxBotica of listaProductoxBotica; track pxBotica) {
                     <mat-option [value]="pxBotica.idProductoxBotica">{{pxBotica.producto.nombreProducto}}({{ pxBotica.botica.nombreBotica }})</mat-option>

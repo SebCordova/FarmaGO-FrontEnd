@@ -2,10 +2,20 @@
     <div>
         <h1>Detalle de Orden Registrados</h1>
     </div>
+
+    <!-- Paginador de Angular Material -->
+    <mat-paginator 
+        [length]="totalCards" 
+        [pageSize]="5" 
+        [pageSizeOptions]="[5, 10, 25, 100]" 
+        (page)="onPageChange($event)" 
+        aria-label="Select page">
+    </mat-paginator>
+
     <div style="width: 90%; margin-left: auto; margin-right: auto;">
 
       <div class="card-container">
-        <mat-card *ngFor="let element of dataDO.data" class="mat-card-example">
+        <mat-card *ngFor="let element of currentPageData" class="mat-card-example">
           <mat-card-header>
             <mat-card-title>{{ element.idDetalleOrden }}</mat-card-title>
           </mat-card-header>
@@ -15,7 +25,7 @@
             <p>Cantidad del Producto: {{ element.cantidadProducto }}</p>
           </mat-card-content>
           <mat-card-content>
-            <p>Precio: {{ element.precioxCantidadProducto }}</p>
+            <p>Precio (PEN): {{ element.precioxCantidadProducto }}</p>
           </mat-card-content>
           <mat-card-content>
             <p>Orden de Compra: {{ element.ocompra.idOrdenCompra }}</p>

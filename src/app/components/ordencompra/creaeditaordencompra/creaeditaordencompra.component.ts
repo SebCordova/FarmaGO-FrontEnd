@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   templateUrl: './creaeditaordencompra.component.html',
-  styleUrl: './creaeditaordencompra.component.css'
+  styleUrl: './creaeditaordencompra.component.css',
 })
 export class CreaeditaordencompraComponent implements OnInit{
   form: FormGroup = new FormGroup({});

@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 
 
 @Component({
@@ -23,30 +23,53 @@ export class ListarproductoxboticaComponent {
 
   datapxb = new MatTableDataSource<any>(); 
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+    // Datos para la paginación
+    totalCards: number=this.datapxb.data.length; // Número total de productos
+    currentPageData: any[] = []; // Productos actuales a mostrar en la página
+    pageSize: number = 5; // Número de tarjetas por página
+    currentPage: number = 0; // Página actual
+
   ngOnInit(): void {
 
+   
 
     this.pxbS.list().subscribe((data) => {
       this.datapxb.data = data.sort((a, b) => a.idProductoxBotica - b.idProductoxBotica);
-
-      this.datapxb.paginator= this.paginator;
+      this.totalCards=this.datapxb.data.length; // Número total de productos
+      this.updatePageData();
     });
- 
+
     // O si necesitas traer la segunda lista también
     this.pxbS.getList().subscribe((data) => {
       this.datapxb.data = data.sort((a, b) => a.idProductoxBotica - b.idProductoxBotica);
-
-      this.datapxb.paginator = this.paginator;
+      this.totalCards=this.datapxb.data.length; // Número total de productos
+      this.updatePageData();
     });
     
+        ////----------------------Paginación------------------//
+
+
+    
+
     
   }
 
 
-  ngAfterViewInit(): void {
-    this.datapxb.paginator = this.paginator;
-  }
+
+
+    ////----------------------Paginación------------------//
+
+    // Función para manejar el cambio de página
+    onPageChange(event: PageEvent) {
+      this.currentPage = event.pageIndex; // Actualizar la página actual
+      this.pageSize = event.pageSize; // Obtener el tamaño de página
+      this.updatePageData(); // Actualizar los productos a mostrar
+    }
+    // Función para actualizar los productos mostrados según la página
+    updatePageData() {
+      const startIndex = this.currentPage * this.pageSize; // Índice inicial
+      this.currentPageData = this.datapxb.data.slice(startIndex, startIndex + this.pageSize); // Filtrar productos según la página actual
+    }
 
   
 

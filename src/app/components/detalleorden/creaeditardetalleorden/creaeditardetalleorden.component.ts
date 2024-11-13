@@ -13,6 +13,7 @@ import { ProductoxBotica } from '../../../models/ProductoxBotica';
 import { OrdencompraService } from '../../../services/ordencompra.service';
 import { ProductoxboticaService } from '../../../services/productoxbotica.service';
 
+
 @Component({
   selector: 'app-creaeditardetalleorden',
   standalone: true,
@@ -20,12 +21,13 @@ import { ProductoxboticaService } from '../../../services/productoxbotica.servic
   templateUrl: './creaeditardetalleorden.component.html',
   styleUrl: './creaeditardetalleorden.component.css'
 })
-export class CreaeditardetalleordenComponent {
+export class CreaeditardetalleordenComponent{
 
   form: FormGroup = new FormGroup({});
   do: DetalleOrden = new DetalleOrden();
   id: number = 0;
   edicion: boolean = false;
+
   listaOrdenCompra: OrdenCompra[] = []
   listaProductoxBotica: ProductoxBotica[] = []
   constructor(
@@ -64,7 +66,19 @@ export class CreaeditardetalleordenComponent {
       this.listaOrdenCompra = data
     })
 
+    this.listaDOUnicosOC = this.listaDO.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.ocompra.idOrdenCompra === value.ocompra.idOrdenCompra
+      ))
+    );
 
+    this.listaDOUnicosPXB = this.listaDO.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.pxBotica.idProductoxBotica === value.pxBotica.idProductoxBotica
+      ))
+    );
+
+ 
   }
 
   aceptar(): void {

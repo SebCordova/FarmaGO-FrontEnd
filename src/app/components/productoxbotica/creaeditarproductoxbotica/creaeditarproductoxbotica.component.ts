@@ -60,6 +60,7 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
       this.edicion = data['id'] != null;
       //Capturar los datos que vienen de la lista s
       this.init();
+      
     });
 
     this.form = this.formBuilder.group({

@@ -22,6 +22,7 @@ import { ComentarioComponent } from './components/comentario/comentario.componen
 import { CreaeditacomentarioComponent } from './components/comentario/creaeditacomentario/creaeditacomentario.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 
+
 export const routes: Routes = [
   {
     path: '',

@@ -2,15 +2,28 @@
     <div>
         <h1>Productos Registrados</h1>
     </div>
+
+        <!-- Paginador de Angular Material -->
+        <mat-paginator 
+        [length]="totalCards" 
+        [pageSize]="5" 
+        [pageSizeOptions]="[5, 10, 25, 100]" 
+        (page)="onPageChange($event)" 
+        aria-label="Select page">
+    </mat-paginator>
+    
     <div style="width: 90%; margin-left: auto; margin-right: auto;">
 
       <div class="card-container">
-        <mat-card *ngFor="let element of datas" class="mat-card-example">
+        <mat-card *ngFor="let element of currentPageData" class="mat-card-example">
           <mat-card-header>
             <mat-card-title>{{ element.nombreProducto }}</mat-card-title>
           </mat-card-header>
 
-          <img mat-card-image src=" https://scrconsultores.com.pe/wp-content/uploads/2023/11/2-1-600x400.png" alt="Producto farmaceutico">
+         <img mat-card-image src=" https://scrconsultores.com.pe/wp-content/uploads/2023/11/2-1-600x400.png" alt="Producto farmaceutico">
+         
+         <!-- <img mat-card-image [src]="element.imagenProducto" alt="Imagen del producto">
+         -->
           <mat-card-content>
             <p>Laboratorio: {{ element.labProducto }}</p>
           </mat-card-content>
