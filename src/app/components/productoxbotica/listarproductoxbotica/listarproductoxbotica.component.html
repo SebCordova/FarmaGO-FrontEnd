@@ -34,7 +34,7 @@
 
 
       
-          <mat-card-actions >
+          <mat-card-actions *ngIf="verificar()" >
            <mat-icon style="color: red; margin-right: auto;" (click)="eliminar(element.idProductoxBotica)" *ngIf="isAdministrador() || isDBotica()">delete</mat-icon>
           
            <mat-icon style="color: purple; margin-left: auto;" [routerLink]="['edicionespxb', element.idProductoxBotica]" *ngIf="isAdministrador() || isDBotica()">edit</mat-icon>
