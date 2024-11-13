@@ -35,20 +35,22 @@ export class ListarproductoxboticaComponent {
 
     this.pxbS.list().subscribe((data) => {
       this.datapxb.data = data.sort((a, b) => a.idProductoxBotica - b.idProductoxBotica);
-
+      this.totalCards=this.datapxb.data.length; // Número total de productos
+      this.updatePageData();
     });
 
     // O si necesitas traer la segunda lista también
     this.pxbS.getList().subscribe((data) => {
       this.datapxb.data = data.sort((a, b) => a.idProductoxBotica - b.idProductoxBotica);
-      
+      this.totalCards=this.datapxb.data.length; // Número total de productos
+      this.updatePageData();
     });
     
         ////----------------------Paginación------------------//
 
-    this.updatePageData();
+
     
-  this.totalCards=this.datapxb.data.length; // Número total de productos
+
     
   }
 

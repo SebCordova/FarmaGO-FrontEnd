@@ -35,19 +35,22 @@ export class ListardetalleordenComponent {
     this.doS.list().subscribe((data) => {
       console.log(data);
       this.dataDO.data = data.sort((a, b) => a.idDetalleOrden - b.idDetalleOrden);
+      this.totalCards=this.dataDO.data.length; // Número total de productos
+      this.updatePageData();
     });
 
      
     // O si necesitas traer la segunda lista también
     this.doS.getList().subscribe((data) => {
       this.dataDO.data = data.sort((a, b) => a.idDetalleOrden - b.idDetalleOrden);
+      this.totalCards=this.dataDO.data.length; // Número total de productos
+      this.updatePageData();
+
     });
     
-    ////----------------------Paginación------------------//
 
-    this.updatePageData();
     
-    this.totalCards=this.dataDO.data.length; // Número total de productos
+
   }
 
 ////----------------------Paginación------------------//

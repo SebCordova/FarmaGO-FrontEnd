@@ -3,4 +3,5 @@ export class Producto{
     nombreProducto:string = ""
     marcaProducto:string = ""
     labProducto:string = ""
+   // imagenProducto:string = ""
 }
