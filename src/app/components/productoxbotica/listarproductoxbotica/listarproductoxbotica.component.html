@@ -35,9 +35,9 @@
 
       
           <mat-card-actions >
-           <mat-icon style="color: red; margin-right: auto;" (click)="eliminar(element.idProductoxBotica)">delete</mat-icon>
+           <mat-icon style="color: red; margin-right: auto;" (click)="eliminar(element.idProductoxBotica)" *ngIf="isAdministrador() || isDBotica()">delete</mat-icon>
           
-           <mat-icon style="color: purple; margin-left: auto;" [routerLink]="['edicionespxb', element.idProductoxBotica]">edit</mat-icon>
+           <mat-icon style="color: purple; margin-left: auto;" [routerLink]="['edicionespxb', element.idProductoxBotica]" *ngIf="isAdministrador() || isDBotica()">edit</mat-icon>
           </mat-card-actions>
 
        

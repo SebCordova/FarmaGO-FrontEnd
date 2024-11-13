@@ -27,7 +27,7 @@
       <mat-icon>shopping_basket</mat-icon> Producto
     </button>
 
-    <button mat-button [matMenuTriggerFor]="menuProductoxbotica" style="color: white" *ngIf="isAdministrador() || isDBotica()"> <!--ProductoxBotica-->
+    <button mat-button [matMenuTriggerFor]="menuProductoxbotica" style="color: white" *ngIf="isAdministrador() || isDBotica() || isCliente()"> <!--ProductoxBotica-->
       <mat-icon>business_center</mat-icon> ProductoxBotica
     </button>
 
@@ -98,7 +98,7 @@
   <button mat-menu-item routerLink="/productosxbotica" style="color: black">
     Listar
   </button>
-  <button mat-menu-item routerLink="/productosxbotica/nuevo" style="color: black">
+  <button mat-menu-item routerLink="/productosxbotica/nuevo" style="color: black" *ngIf="isAdministrador() || isDBotica()">
     Registrar
   </button>
 </mat-menu>

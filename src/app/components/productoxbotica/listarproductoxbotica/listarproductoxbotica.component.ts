@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import { AppComponent } from '../../../app.component';
+import { LoginService } from '../../../services/login.service';
 
 
 @Component({
@@ -19,9 +21,10 @@ import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/pag
 export class ListarproductoxboticaComponent {
 
   
-  constructor(private pxbS:ProductoxboticaService){}
+  constructor(private pxbS:ProductoxboticaService, private loginService: LoginService){}
 
   datapxb = new MatTableDataSource<any>(); 
+  role: string = '';
 
     // Datos para la paginación
     totalCards: number=this.datapxb.data.length; // Número total de productos
@@ -31,7 +34,7 @@ export class ListarproductoxboticaComponent {
 
   ngOnInit(): void {
 
-   
+
 
     this.pxbS.list().subscribe((data) => {
       this.datapxb.data = data.sort((a, b) => a.idProductoxBotica - b.idProductoxBotica);
@@ -79,6 +82,22 @@ export class ListarproductoxboticaComponent {
         this.pxbS.setList(data);
       });
     });
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isDBotica() {
+    return this.role === 'DBotica';
+  }
+
+  isCliente() {
+    return this.role === 'Cliente';
+  }
+
+  isAdministrador() {
+    return this.role === 'Administrador';
   }
 }
 
