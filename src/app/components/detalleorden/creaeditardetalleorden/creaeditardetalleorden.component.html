@@ -1,6 +1,6 @@
 <div>
     <div>
-        <h1>Registrar ProductoxBotica</h1>
+        <h1>Registrar Detalle de Orden</h1>
     </div>
     <div class="col-md-3 offset-md-3">
         <form [formGroup]="form"  (submit)="aceptar()" style="text-align: center;">
@@ -24,8 +24,8 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Orden de Compra</mat-label>
                 <mat-select formControlName="hOcompra">
-                  @for (do of listaDO; track do) {
-                    <mat-option [value]="do.ocompra.idOrdenCompra">{{do.ocompra.idOrdenCompra}}</mat-option>
+                  @for (ocompra of listaOrdenCompra; track ocompra) {
+                    <mat-option [value]="ocompra.idOrdenCompra">{{ocompra.idOrdenCompra}}</mat-option>
                   }
                 </mat-select>
             </mat-form-field>
@@ -36,15 +36,14 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Cod. Producto(Botica)</mat-label>
                 <mat-select formControlName="hPxBotica">
-                  @for (do of listaDO; track do) {
-                    <mat-option [value]="do.pxBotica.idProductoxBotica">{{do.pxBotica.producto.nombreProducto}}({{ do.pxBotica.botica.nombreBotica }})</mat-option>
+                  @for (pxBotica of listaProductoxBotica; track pxBotica) {
+                    <mat-option [value]="pxBotica.idProductoxBotica">{{pxBotica.producto.nombreProducto}}({{ pxBotica.botica.nombreBotica }})</mat-option>
                   }
                 </mat-select>
             </mat-form-field>
 
             <div>
-                <button mat-flat-button class="btn btn-danger btn-lg" [disabled]="form.invalid">Registrar</button>
-            </div>
+                <button mat-button class="custom-button" style="background-color: rgb(104, 20, 20); color:white" [disabled]="form.invalid">Registrar</button>            </div>
             <br>
         </form>
     </div>

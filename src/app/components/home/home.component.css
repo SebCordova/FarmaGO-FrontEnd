@@ -1,0 +1,288 @@
+header {
+    background-color: #424242; /* Color de fondo del encabezado */
+    color: #fff; /* Color de texto del encabezado */
+    padding: 10px; /* Espaciado interno del encabezado */
+    height:70px;
+}
+body {
+    background-color: #fff; /* Cambia esto al color que prefieras */
+    margin: 0; /* Elimina el margen predeterminado del cuerpo */
+    padding: 0; /* Elimina el espaciado interno predeterminado del cuerpo */
+}
+
+.logo img {
+    float: left; /* Coloca el logotipo a la izquierda */
+    width: auto;
+    height: 70px;
+}
+
+.secciones {
+    float: right; /* Coloca las secciones a la derecha */
+    font-size: 20px;
+    padding:20px;    
+}
+
+.secciones a {
+    color: #fff9f9; /* Color de enlaces en las secciones */
+    text-decoration: none; /* Elimina subrayado de enlaces */
+    margin-left: 25px; /* Espaciado entre enlaces de secciones */
+    font-size: 20px;
+}
+
+a[href="#Registro"] {
+    background-color: #fa2121de; /* Cambiar el fondo del enlace */
+    color: #dfd3d3; /* Cambiar el color del texto del enlace */
+    padding: 10px 30px; /* Añadir espaciado interno para destacar el enlace */
+    border-radius: 6px;  /* Agregar bordes redondeados (opcional) */
+}   
+
+
+.contenedor-imagen {
+    position: relative;
+    width: 100%; /* Ajusta el ancho de acuerdo a tus necesidades */
+}
+
+.imagen {
+    width: 100%;
+    height: 550px;
+    
+}
+
+.texto-superpuesto {
+    position: absolute;
+    font-family: 'Verdana';
+    font-weight: bold;
+    top: 70%; /* Alinea el texto verticalmente al centro de la imagen */
+    left: 20%; /* Alinea el texto horizontalmente al centro de la imagen */
+    transform: translate(-50%, -50%); /* Centra el texto */
+    color: rgb(233, 233, 233); /* Color del texto */
+    background-color: #333232b9;
+    padding: 30px; /* Espaciado interno del contenedor de texto */
+    font-size: 40px;
+}
+
+ /* Estilos para las secciones (puedes personalizarlos) */
+ section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+
+
+
+
+
+
+#Registro {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+ /* Estilos para el pie de página */
+ #footer {
+    background-color: #FF0000; /* Fondo rojo */
+    color: #fff; /* Texto blanco */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilizar los enlaces en el pie de página */
+#footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px; /* Espaciado entre los enlaces */
+}
+
+/* Estilizar los enlaces en el pie de página cuando se les pasa el cursor por encima */
+#footer a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el cuadro de búsqueda */
+.search-box {
+    width: 800px;
+    margin: 20px auto;
+    background: #ff7f7f;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    align-items: right;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.search-box input[type="text"] {
+    border: none;
+    outline: none;
+    width: 800px;
+    padding: 15px;
+    border-radius: 12px 0 0 12px;
+}
+
+.search-box button {
+    background: #bf3333;
+    border: solid;
+    border-radius: 0 25px 25px 0;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* Estilos para la lista de categorías en dos filas de 3 categorías cada una */
+.categories {
+   max-width: 2000px;
+    margin: 20px auto;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center; 
+}
+
+.category {
+    width: 45%; /* Tamaño más ancho en un 45% del ancho */
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px; /* Márgenes uniformes */
+    text-align: center;
+    height: 280px; /* Altura fija para todos los cuadros de categorías */
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: gray;
+}
+
+.category img {
+    width: 100%; /* Tamaño de imagen uniforme al 100% del ancho del contenedor */
+    height: 160px; /* Altura fija para todas las imágenes */
+    object-fit: cover; 
+}
+
+.category h3 {
+    color: #333;
+}
+
+.category p {
+    color: #666;
+}
+/* Estilos para la sección de reseñas */
+.reviews {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.review-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.review-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-card h3 {
+    color: #333;
+    margin-top: 10px;
+}
+
+.review-card .rating {
+    color: #ffcc00;
+}
+
+.review-card p {
+    color: #666;
+    margin-top: 10px;
+}
+/* Estilos para la sección "Sobre Nosotros" */
+.about-us {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.about-us h2 {
+    color: #ff7f7f;
+}
+
+.mission-vision-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.mission-vision-values .item {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.mission-vision-values .item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.mission-vision-values .item h3 {
+    color: #333;
+    margin-top: 10px;
+}
+
+.mission-vision-values .item p {
+    color: #666;
+    margin-top: 10px;
+}

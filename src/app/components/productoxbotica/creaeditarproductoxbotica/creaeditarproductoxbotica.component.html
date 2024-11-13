@@ -36,8 +36,8 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Botica</mat-label>
                 <mat-select formControlName="hbotica">
-                  @for (pxb of listapxb; track pxb) {
-                    <mat-option [value]="pxb.botica.idBotica">{{pxb.botica.nombreBotica}}</mat-option>
+                  @for (botica of listaBoticas; track botica) {
+                    <mat-option [value]="botica.idBotica">{{botica.nombreBotica}}</mat-option>
                   }
                 </mat-select>
             </mat-form-field>
@@ -50,16 +50,15 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Producto</mat-label>
                 <mat-select formControlName="hproducto">
-                  @for (pxb of listapxb; track pxb) {
-                    <mat-option [value]="pxb.producto.idProducto">{{pxb.producto.nombreProducto}}</mat-option>
+                  @for (producto of listaProductos; track producto) {
+                    <mat-option [value]="producto.idProducto">{{producto.nombreProducto}}</mat-option>
                   }
                 </mat-select>
             </mat-form-field>
 
             <br>
             <div>
-                <button mat-flat-button class="btn btn-danger btn-lg" [disabled]="form.invalid">Registrar</button>
-            </div>
+              <button mat-button class="custom-button" style="background-color: rgb(104, 20, 20); color:white" [disabled]="form.invalid">Registrar</button>            </div>
             <br>
         </form>
     </div>

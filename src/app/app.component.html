@@ -1,41 +1,60 @@
-<mat-toolbar
-  class="custom-toolbar"
-  style="background-color: rgb(70, 0, 0); color: white"
->
-  <div>
+<mat-toolbar class="custom-toolbar" style="background-color: rgb(70, 0, 0); color: white;" *ngIf="verificar()">
+  <div  class="left-menu">
+    <div class="logo" *ngIf="isCliente() || isDBotica()">
+      <img src=" https://sebcordova.github.io/LandingPage/LOGORE.png" alt="Logo de la empresa"> 
+  </div>
+    <button mat-button [routerLink]="['/homes']" style="color: white;">
+      <mat-icon>home</mat-icon>
+    </button>
 
-    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuUsuario" style="color: white" *ngIf="isAdministrador()">
       <mat-icon>account_box</mat-icon> Usuarios
     </button>
-    <button mat-button [matMenuTriggerFor]="menuBotica" style="color: white">
-      <mat-icon>business_center</mat-icon> Boticas
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white">
+
+    <button mat-button [matMenuTriggerFor]="menuRol" style="color: white" *ngIf="isAdministrador()">
       <mat-icon>assignment_ind</mat-icon> Roles
-
     </button>
 
-    <button mat-button [matMenuTriggerFor]="menuProducto" style="color: white"> <!--Producto-->
-      Producto
+    <button mat-button [matMenuTriggerFor]="menuDistrito" style="color: white" *ngIf="isAdministrador()">
+      <mat-icon> add_location</mat-icon> Distritos
     </button>
 
-    <button mat-button [matMenuTriggerFor]="menuProductoxbotica" style="color: white"> <!--ProductoxBotica-->
-      ProductoxBotica
+    <button mat-button [matMenuTriggerFor]="menuBotica" style="color: white" *ngIf="isAdministrador() || isDBotica()">
+      <mat-icon>store</mat-icon> Boticas
     </button>
 
-    <button mat-button [matMenuTriggerFor]="menuDetalleOrden" style="color: white"> <!--detalleOrden-->
-      DetalleOrden
+
+    <button mat-button [matMenuTriggerFor]="menuProducto" style="color: white" *ngIf="isAdministrador()"> <!--Producto-->
+      <mat-icon>shopping_basket</mat-icon> Producto
     </button>
 
-    <button mat-button [matMenuTriggerFor]="menuEjemplo" style="color: white">
-      Distritos
+    <button mat-button [matMenuTriggerFor]="menuProductoxbotica" style="color: white" *ngIf="isAdministrador() || isDBotica()"> <!--ProductoxBotica-->
+      <mat-icon>business_center</mat-icon> ProductoxBotica
     </button>
 
-    <button mat-button [matMenuTriggerFor]="menuOrden" style="color: white">
-      OrdenCompra
+    <button mat-button [matMenuTriggerFor]="menuOrden" style="color: white" *ngIf="isAdministrador() || isCliente()">
+      <mat-icon> local_pharmacy</mat-icon> OrdenCompra
     </button>
 
+    <button mat-button [matMenuTriggerFor]="menuDetalleOrden" style="color: white" *ngIf="isAdministrador() || isCliente()"> <!--detalleOrden-->
+      <mat-icon>description</mat-icon> DetalleOrden
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuComentario" style="color: white" *ngIf="isAdministrador() || isCliente() || isDBotica()">
+      <mat-icon> comment</mat-icon> Comentario
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white" *ngIf="isAdministrador() || isCliente() || isDBotica()">
+      <mat-icon> insert_drive_file</mat-icon>
+      Reportes
+    </button>
   </div>
+
+    <div class="right-menu">
+      <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
+        <mat-icon>person</mat-icon>
+      </button>
+    </div>
 </mat-toolbar>
 
 <mat-menu #menuUsuario="matMenu" style="background-color: rgb(70, 0, 0)">
@@ -95,7 +114,7 @@
   </button>
 </mat-menu>
 
-<mat-menu #menuEjemplo="matMenu" style="background-color: rgb(70, 0, 0)">
+<mat-menu #menuDistrito="matMenu" style="background-color: rgb(70, 0, 0)">
   <button mat-menu-item routerLink="/distritos" style="color: black">
     Listar
   </button>
@@ -110,6 +129,36 @@
   </button>
   <button mat-menu-item routerLink="/ordenescompras/nuevo" style="color: black">
     Registrar
+  </button>
+</mat-menu>
+
+<mat-menu #menuComentario="matMenu" style="background-color: rgb(70, 0, 0)">
+  <button mat-menu-item routerLink="/comentarios" style="color: black">
+    Listar
+  </button>
+  <button mat-menu-item routerLink="/comentarios/nuevo" style="color: black">
+    Registrar
+  </button>
+</mat-menu>
+
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes">
+    <mat-icon> pie_chart</mat-icon>Cantidad Boticas
+  </button>
+</mat-menu>
+
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item>
+    Usuario:
+    <span>{{ email }}</span>
+  </button>
+  <button mat-menu-item>
+    Rol:
+    <span>{{ role }}</span>
+  </button>
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
   </button>
 </mat-menu>
 

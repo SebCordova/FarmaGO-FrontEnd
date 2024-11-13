@@ -10,6 +10,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/Usuario';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-creaeditaordencompra',
@@ -21,6 +23,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './creaeditaordencompra.component.html',
   styleUrl: './creaeditaordencompra.component.css'
@@ -32,8 +36,9 @@ export class CreaeditaordencompraComponent implements OnInit{
   edicion: boolean = false;
 
   listaEstados: { value: string; viewValue: string }[] = [
-    { value: 'True', viewValue: 'True' },
-    { value: 'False', viewValue: 'False' },
+    { value: 'Completada', viewValue: 'Completada' },
+    { value: 'En Proceso', viewValue: 'En Proceso' },
+    { value: 'Cancelada', viewValue: 'Cancelada' },
   ];
 
   listaUsuarios: Usuario[] = [];
@@ -54,7 +59,7 @@ export class CreaeditaordencompraComponent implements OnInit{
       //captura data que viene de la lista
     }),
       (this.form = this.formBuilder.group({
-      hcodigo: ['', Validators.required],
+      hcodigo: [''],
       hfecha: ['', Validators.required],
       hmonto: ['', Validators.required],
       hestado: ['', Validators.required],
@@ -71,7 +76,7 @@ export class CreaeditaordencompraComponent implements OnInit{
       this.orden.fechaOrden = this.form.value.hfecha;
       this.orden.montoOrden = this.form.value.hmonto;
       this.orden.estadoOrden = this.form.value.hestado;
-      this.orden.usuario.nomUsuario = this.form.value.husuario;
+      this.orden.usuario.idUsuario = this.form.value.husuario;
 
       if(this.edicion){
         this.oS.update(this.orden).subscribe(data=>{
@@ -97,7 +102,7 @@ export class CreaeditaordencompraComponent implements OnInit{
           hfecha:new FormControl(data.fechaOrden),
           hmonto:new FormControl(data.montoOrden),
           hestado:new FormControl(data.estadoOrden),
-          husuario:new FormControl(data.usuario.nomUsuario)
+          husuario:new FormControl(data.usuario.idUsuario)
         });
       });
     }

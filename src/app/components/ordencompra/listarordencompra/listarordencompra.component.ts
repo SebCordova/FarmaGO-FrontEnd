@@ -29,10 +29,10 @@ export class ListarordencompraComponent {
 
   ngOnInit(): void {
     this.oS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idOrdenCompra - b.idOrdenCompra));
     });
     this.oS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idOrdenCompra - b.idOrdenCompra));
     });
   }
   eliminar(id: number) {

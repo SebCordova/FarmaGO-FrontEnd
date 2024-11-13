@@ -11,11 +11,18 @@ import { BoticaService } from '../../../services/botica.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { Usuario } from '../../../models/Usuario';
+import { Distrito } from '../../../models/Distrito';
+import { UsuarioService } from '../../../services/usuario.service';
+import { DistritoService } from '../../../services/distrito.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-creaeditarbotica',
   standalone: true,
-  imports: [MatFormFieldModule, ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, CommonModule, MatSelectModule, MatButtonModule, MatInputModule],
   templateUrl: './creaeditarbotica.component.html',
   styleUrl: './creaeditarbotica.component.css',
 })
@@ -25,11 +32,17 @@ export class CreaeditarboticaComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
 
+  listaUsuarios: Usuario[] = [];
+
+  listaDistritos: Distrito[] = [];
+
   constructor(
     private bS: BoticaService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private uS: UsuarioService,
+    private dS: DistritoService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +61,15 @@ export class CreaeditarboticaComponent implements OnInit {
       hdistrito: ['', Validators.required],
       husuario: ['', Validators.required],
     });
+
+    this.uS.list().subscribe(data =>{
+      this.listaUsuarios = data
+    })
+
+    this.dS.list().subscribe(data =>{
+      this.listaDistritos = data
+    })
+  
   }
   aceptar(): void {
     if (this.form.valid) {

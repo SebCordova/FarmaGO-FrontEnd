@@ -14,6 +14,42 @@
                 <input matInput placeholder="Ej. Botica San Miguel"  formControlName="hnombreBotica">
             </mat-form-field>
             <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Ubicacion</mat-label>
+                <input matInput placeholder="Ej. Av. Los Pinos 568"  formControlName="hubicacionBotica">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Latitud</mat-label>
+                <input matInput placeholder="-12.043573"  formControlName="hlatitudBotica">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Latitud</mat-label>
+                <input matInput placeholder="-77.022333"  formControlName="hlongitudBotica">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Distrito</mat-label>
+                <mat-select formControlName="hdistrito">
+                  @for (food of listaDistritos; track food) {
+                    <mat-option [value]="food.idDistrito">{{food.nomDistrito}}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Usuarios</mat-label>
+                <mat-select formControlName="husuario">
+                  @for (food of listaUsuarios; track food) {
+                    <mat-option [value]="food.idUsuario">{{food.correoUsuario}}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <div>
+                <button mat-button class="custom-button" style="background-color: rgb(104, 20, 20); color:white" [disabled]="form.invalid">Registrar</button>
+            </div>
             <br>
         </form>
     </div>

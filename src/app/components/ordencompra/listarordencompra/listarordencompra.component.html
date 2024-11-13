@@ -2,7 +2,7 @@
     <div style="text-align: center; margin: 5%">
       <h1>Lista de Ordenes de Compra</h1>
     </div>
-    <div>
+    <div style="width: 90%; margin-left: auto; margin-right: auto;">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Position Column -->
         <ng-container matColumnDef="cd1">
@@ -42,7 +42,7 @@
           *matCellDef="let element"
           (click)="eliminar(element.idOrdenCompra)"
         >
-        <mat-icon>delete</mat-icon>
+        <mat-icon style="color: red;">delete</mat-icon>
         </td>
       </ng-container>
 
@@ -53,7 +53,7 @@
           mat-cell
           *matCellDef="let element"
         >
-        <button mat-raised-button [routerLink]="['ediciones', element.idOrdenCompra]">
+        <button mat-raised-button style="border: 0cap; background-color: transparent;" [routerLink]="['ediciones', element.idOrdenCompra]">
           <mat-icon style = "color:#3b1d9a">edit</mat-icon>
         </button>
         </td>
@@ -63,5 +63,6 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
+    <br>
   </div>
   
