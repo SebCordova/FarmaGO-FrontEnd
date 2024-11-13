@@ -67,7 +67,7 @@ export class CreaeditacomentarioComponent implements OnInit {
       //captura data que viene de la lista
     }),
       (this.form = this.formBuilder.group({
-        hcodigo: ['', Validators.required],
+        hcodigo: [''],
         hdetalle: ['', Validators.required],
         hfecha: ['', Validators.required],
         hproxbot: ['', Validators.required],
@@ -86,8 +86,8 @@ export class CreaeditacomentarioComponent implements OnInit {
       this.comen.idComentario = this.form.value.hcodigo;
       this.comen.detalleComentario = this.form.value.hdetalle;
       this.comen.fechaComentario = this.form.value.hfecha;
-      this.comen.pxBotica.producto.nombreProducto = this.form.value.hproxbot;
-      this.comen.usuario.nomUsuario = this.form.value.husuario;
+      this.comen.PxBotica.idProductoxBotica = this.form.value.hproxbot;
+      this.comen.usuario.idUsuario = this.form.value.husuario;
 
       if (this.edicion) {
         this.cS.update(this.comen).subscribe((data) => {
@@ -112,10 +112,11 @@ export class CreaeditacomentarioComponent implements OnInit {
           hcodigo: new FormControl(data.idComentario),
           hfecha: new FormControl(data.detalleComentario),
           hmonto: new FormControl(data.fechaComentario),
-          hproxbot: new FormControl(data.pxBotica.producto.nombreProducto),
-          husuario: new FormControl(data.usuario.nomUsuario),
+          hproxbot: new FormControl(data.PxBotica.idProductoxBotica),
+          husuario: new FormControl(data.usuario.idUsuario),
         });
       });
     }
   }
 }
+

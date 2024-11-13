@@ -1,13 +1,13 @@
 <div>
     <div><h1>Registro de Comentario</h1></div>
     <div>
-      <form [formGroup]="form" (submit)="aceptar()">
+      <form [formGroup]="form" (submit)="aceptar()" style="text-align: center;">
         
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" *ngIf="edicion">
           <mat-label>Codigo Comentario</mat-label>
           <input
             matInput
-            placeholder="Ejem. TV"
+            placeholder="Ejem. 1"
             formControlName="hcodigo"
           />
         </mat-form-field>
@@ -15,7 +15,7 @@
 
         <mat-form-field class="example-full-width">
             <mat-label>Detalle</mat-label>
-            <input matInput placeholder="7500" formControlName="hdetalle" />
+            <input matInput placeholder="..." formControlName="hdetalle" />
           </mat-form-field>
           <br />
 
@@ -33,26 +33,26 @@
           <br />
   
           <mat-form-field>
-            <mat-label>Producto por Botica</mat-label>
+            <mat-label>Producto</mat-label>
             <mat-select formControlName="hproxbot">
               @for (food of listaProductoXBotica; track food) {
-              <mat-option [value]="food.producto.nombreProducto">{{ food.producto.nombreProducto }}</mat-option>
+              <mat-option [value]="food.idProductoxBotica">{{food.producto.nombreProducto}}({{ food.botica.nombreBotica }})</mat-option>
               }
             </mat-select>
           </mat-form-field>
           <br />
   
         <mat-form-field>
-          <mat-label>Usuarios</mat-label>
+          <mat-label>Usuario</mat-label>
           <mat-select formControlName="husuario">
             @for (food of listaUsuario; track food) {
-            <mat-option [value]="food.nomUsuario">{{ food.nomUsuario }}</mat-option>
+            <mat-option [value]="food.idUsuario">{{ food.nomUsuario }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
         <br />
         <div>
-          <button mat-button class="custom-button">Registrar</button>
+          <button mat-button class="custom-button" style="background-color: rgb(104, 20, 20); color:white" [disabled]="form.invalid">Registrar</button>
         </div>
       </form>
     </div>

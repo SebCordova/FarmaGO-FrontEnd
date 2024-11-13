@@ -1,0 +1,11 @@
+.right-menu {
+    margin-left: auto; /* Empuja el menú de usuarios a la derecha */
+  }
+  .left-menu {
+    display: flex; /* Permite alinear los botones horizontalmente */
+  }
+  .logo img {
+    float: left; /* Coloca el logotipo a la izquierda */
+    width: auto;
+    height: 45px;
+}

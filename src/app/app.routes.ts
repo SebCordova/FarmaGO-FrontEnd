@@ -15,21 +15,35 @@ import { CreaeditarproductoxboticaComponent } from './components/productoxbotica
 import { DetalleordenComponent } from './components/detalleorden/detalleorden.component';
 import { CreaeditardetalleordenComponent } from './components/detalleorden/creaeditardetalleorden/creaeditardetalleorden.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+import { HomeComponent } from './components/home/home.component';
 import { ComentarioComponent } from './components/comentario/comentario.component';
 import { CreaeditacomentarioComponent } from './components/comentario/creaeditacomentario/creaeditacomentario.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: 'usuarios',
     component: UsuarioComponent,
     children: [
       {
         path: 'nuevo',
-        component: CreaeditadistritoComponent,
+        component: CreaeditarususarioComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditadistritoComponent,
+        component: CreaeditarususarioComponent,
       },
     ],
   },
@@ -46,6 +60,7 @@ export const routes: Routes = [
         component: CreaeditarboticaComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'roles',
@@ -60,6 +75,7 @@ export const routes: Routes = [
         component: CreaeditarolComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
 {
     path: 'productos',
@@ -74,6 +90,7 @@ export const routes: Routes = [
         component: CreaeditarproductoComponent,
       },
     ],  
+    canActivate: [seguridadGuard],
   },
   {
   
@@ -89,7 +106,7 @@ export const routes: Routes = [
         component: CreaeditarproductoxboticaComponent,
       },
     ],
-
+    canActivate: [seguridadGuard],
 }
 ,{
   
@@ -105,6 +122,7 @@ export const routes: Routes = [
       component: CreaeditardetalleordenComponent,
     },
   ],
+  canActivate: [seguridadGuard],
 
 },{
   path: 'ordenescompras',
@@ -119,6 +137,7 @@ export const routes: Routes = [
       component: CreaeditaordencompraComponent,
     },
   ],
+  canActivate: [seguridadGuard],
 },{
   path: 'distritos',
   component: DistritoComponent,
@@ -132,7 +151,10 @@ export const routes: Routes = [
       component: CreaeditadistritoComponent,
     },
   ],
-},{
+  canActivate: [seguridadGuard],
+}
+,
+{
   path: 'comentarios',
   component: ComentarioComponent,
   children: [
@@ -145,5 +167,16 @@ export const routes: Routes = [
       component: CreaeditacomentarioComponent,
     },
   ],
-}
+  canActivate: [seguridadGuard],
+},
+{
+  path: 'reportes',
+  component: ReportesComponent,
+  canActivate: [seguridadGuard],
+},
+{
+  path: 'homes',
+  component: HomeComponent,
+  canActivate: [seguridadGuard], // solo construcciones, se debe agregar a cada uno
+},
 ];

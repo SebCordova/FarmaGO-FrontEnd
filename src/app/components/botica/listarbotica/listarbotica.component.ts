@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class ListarboticaComponent implements OnInit {
   dataSource: MatTableDataSource<Botica> = new MatTableDataSource();
 
-  displayedColumns:String[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'accion01']
+  displayedColumns:String[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'accion01', 'accion02']
 
   constructor(private bS: BoticaService) {}
   ngOnInit(): void {

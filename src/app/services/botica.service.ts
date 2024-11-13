@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Botica } from '../models/Botica';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { DistritoConMayorBoticasDTO } from '../models/DistritoConMayorBoticasDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -40,5 +41,11 @@ export class BoticaService {
 
   update(botica: Botica) {
     return this.http.put(this.url, botica);
+  }
+
+  getCantidad():Observable<DistritoConMayorBoticasDTO[]>{
+    return this.http.get<DistritoConMayorBoticasDTO[]>(
+      `${this.url}/buscardistritocantboticas`
+    )
   }
 }

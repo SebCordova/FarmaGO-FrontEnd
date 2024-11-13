@@ -24,8 +24,8 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Orden de Compra</mat-label>
                 <mat-select formControlName="hOcompra">
-                  @for (do of listaDOUnicosOC; track do) {
-                    <mat-option [value]="do.ocompra.idOrdenCompra">{{do.ocompra.idOrdenCompra}}</mat-option>
+                  @for (ocompra of listaOrdenCompra; track ocompra) {
+                    <mat-option [value]="ocompra.idOrdenCompra">{{ocompra.idOrdenCompra}}</mat-option>
                   }
                 </mat-select>
             </mat-form-field>
@@ -36,15 +36,14 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Producto(Botica)</mat-label>
                 <mat-select formControlName="hPxBotica">
-                  @for (do of listaDOUnicosPXB; track do) {
-                    <mat-option [value]="do.pxBotica.idProductoxBotica">{{do.pxBotica.producto.nombreProducto}}({{ do.pxBotica.botica.nombreBotica }})</mat-option>
+                  @for (pxBotica of listaProductoxBotica; track pxBotica) {
+                    <mat-option [value]="pxBotica.idProductoxBotica">{{pxBotica.producto.nombreProducto}}({{ pxBotica.botica.nombreBotica }})</mat-option>
                   }
                 </mat-select>
             </mat-form-field>
 
             <div>
-                <button mat-flat-button class="btn btn-danger btn-lg" [disabled]="form.invalid">Registrar</button>
-            </div>
+                <button mat-button class="custom-button" style="background-color: rgb(104, 20, 20); color:white" [disabled]="form.invalid">Registrar</button>            </div>
             <br>
         </form>
     </div>

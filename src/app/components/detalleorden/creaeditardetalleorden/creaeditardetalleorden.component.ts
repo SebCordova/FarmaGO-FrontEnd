@@ -8,7 +8,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
-import { Init } from 'v8';
+import { OrdenCompra } from '../../../models/OrdenCompra';
+import { ProductoxBotica } from '../../../models/ProductoxBotica';
+import { OrdencompraService } from '../../../services/ordencompra.service';
+import { ProductoxboticaService } from '../../../services/productoxbotica.service';
+
 
 @Component({
   selector: 'app-creaeditardetalleorden',
@@ -23,15 +27,16 @@ export class CreaeditardetalleordenComponent{
   do: DetalleOrden = new DetalleOrden();
   id: number = 0;
   edicion: boolean = false;
-  listaDO: DetalleOrden[] = [];
-  listaDOUnicosOC: DetalleOrden[] = [];
-  listaDOUnicosPXB: DetalleOrden[] = [];
 
+  listaOrdenCompra: OrdenCompra[] = []
+  listaProductoxBotica: ProductoxBotica[] = []
   constructor(
     private doS: DetalleordenService,
     private formBuilder: FormBuilder,
     private router: Router,//importante este router NO es el Express
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private oS: OrdencompraService,
+    private pS: ProductoxboticaService
   ) {}
 
 
@@ -53,8 +58,12 @@ export class CreaeditardetalleordenComponent{
     });
 
 
-    this.doS.list().subscribe(data =>{
-      this.listaDO = data
+    this.pS.list().subscribe(data =>{
+      this.listaProductoxBotica = data
+    })
+
+    this.oS.list().subscribe(data =>{
+      this.listaOrdenCompra = data
     })
 
     this.listaDOUnicosOC = this.listaDO.filter((value, index, self) =>
@@ -77,8 +86,8 @@ export class CreaeditardetalleordenComponent{
       this.do.idDetalleOrden = this.form.value.hidDetalleOrden;
       this.do.cantidadProducto = this.form.value.hcantidadProducto;
       this.do.precioxCantidadProducto = this.form.value.hprecioxCantidadProducto;
-      this.do.ocompra = this.form.value.hOcompra;
-      this.do.pxBotica = this.form.value.hPxBotica;
+      this.do.ocompra.idOrdenCompra = this.form.value.hOcompra;
+      this.do.pxBotica.idProductoxBotica = this.form.value.hPxBotica;
       if (this.edicion) {
         this.doS.update(this.do).subscribe((data) => {
           this.doS.list().subscribe((data) => {

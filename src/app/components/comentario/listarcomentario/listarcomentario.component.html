@@ -1,67 +1,69 @@
 <div>
-    <div style="text-align: center; margin: 5%">
-      <h1>Lista de Comentarios</h1>
-    </div>
-    <div>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- Position Column -->
-        <ng-container matColumnDef="cd1">
-          <th mat-header-cell *matHeaderCellDef>ID Comentario</th>
-          <td mat-cell *matCellDef="let element">{{ element.idComentario }}</td>
-        </ng-container>
-  
-        <!-- Name Column -->
-        <ng-container matColumnDef="cd2">
-          <th mat-header-cell *matHeaderCellDef>Detalle Comentario</th>
-          <td mat-cell *matCellDef="let element">{{ element.detalleComentario }}</td>
-        </ng-container>
-  
-        <!-- Weight Column -->
-        <ng-container matColumnDef="cd3">
-          <th mat-header-cell *matHeaderCellDef>Fecha Comentario</th>
-          <td mat-cell *matCellDef="let element">{{ element.fechaComentario }}</td>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="cd4">
-            <th mat-header-cell *matHeaderCellDef>Producto de Botica.</th>
-            <td mat-cell *matCellDef="let element">{{ element.pxBotica.producto.nombreProducto }} ({{ element.pxBotica.botica.nombreBotica }})</td>
-          </ng-container>
-
-          <!-- Weight Column -->
-        <ng-container matColumnDef="cd5">
-            <th mat-header-cell *matHeaderCellDef>Usuario</th>
-            <td mat-cell *matCellDef="let element">{{ element.usuario.nomUsuario }}</td>
-          </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="accion01">
-        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-        <td
-          mat-cell
-          *matCellDef="let element"
-          (click)="eliminar(element.idComentario)"
-        >
-        <mat-icon>delete</mat-icon>
-        </td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="accion02">
-        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
-        <td
-          mat-cell
-          *matCellDef="let element"
-        >
-        <button mat-raised-button [routerLink]="['ediciones', element.idComentario]">
-          <mat-icon style = "color:#3b1d9a">edit</mat-icon>
-        </button>
-        </td>
-      </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </div>
+  <div style="text-align: center; margin: 5%">
+    <h1>Lista de Comentarios</h1>
   </div>
+  <div style="width: 90%; margin-left: auto; margin-right: auto;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="cd1">
+        <th mat-header-cell *matHeaderCellDef>ID Comentario</th>
+        <td mat-cell *matCellDef="let element">{{ element.idComentario }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="cd2">
+        <th mat-header-cell *matHeaderCellDef>Detalle Comentario</th>
+        <td mat-cell *matCellDef="let element">{{ element.detalleComentario }}</td>
+      </ng-container>
+
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cd3">
+        <th mat-header-cell *matHeaderCellDef>Fecha Comentario</th>
+        <td mat-cell *matCellDef="let element">{{ element.fechaComentario }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cd4">
+          <th mat-header-cell *matHeaderCellDef>Producto de Botica.</th>
+          <td mat-cell *matCellDef="let element">{{ element.pxBotica.producto.nombreProducto }} ({{ element.pxBotica.botica.nombreBotica }})</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+      <ng-container matColumnDef="cd5">
+          <th mat-header-cell *matHeaderCellDef>Usuario</th>
+          <td mat-cell *matCellDef="let element">{{ element.usuario.nomUsuario }}</td>
+        </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="accion01">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        (click)="eliminar(element.idComentario)"
+      >
+      <mat-icon style="color: red;">delete</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="accion02">
+      <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+      <button mat-raised-button style="border: 0cap; background-color: transparent;" [routerLink]="['ediciones', element.idComentario]">
+        <mat-icon style = "color:#3b1d9a">edit</mat-icon>
+      </button>
+      </td>
+    </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <br>
+</div>
   
