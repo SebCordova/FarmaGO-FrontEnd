@@ -36,18 +36,21 @@ export class ListarproductoComponent {
 
     this.pS.list().subscribe((data) => {
       this.datas.data = data.sort((a, b) => a.idProducto - b.idProducto);
+      this.totalCards=this.datas.data.length; // Número total de productos
+      this.updatePageData();
     });
 
     // O si necesitas traer la segunda lista también
     this.pS.getList().subscribe((data) => {
       this.datas.data = data.sort((a, b) => a.idProducto - b.idProducto);
+      this.totalCards=this.datas.data.length; // Número total de productos
+      this.updatePageData();
     });
     
-    ////----------------------Paginación------------------//
-
-    this.updatePageData();
+   
+   
     
-    this.totalCards=this.datas.data.length; // Número total de productos
+   
 
   }
 

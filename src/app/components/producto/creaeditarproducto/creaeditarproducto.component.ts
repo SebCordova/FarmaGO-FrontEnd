@@ -23,6 +23,7 @@ export class CreaeditarproductoComponent {
   producto: Producto = new Producto();
   id: number = 0;
   edicion: boolean = false;
+  //selectedFile: File | null = null;
 
   constructor(
     private pS: ProductoService,
@@ -45,11 +46,24 @@ export class CreaeditarproductoComponent {
       hnombreProducto: ['', Validators.required],
       hmarcaProducto: ['', Validators.required],
       hlabProducto: ['', Validators.required],
+     // himagenProducto: ['']// Agrega el control para la imagen
     });
 
 
 }
 
+/*
+onFileSelected(event: any): void {
+  this.selectedFile = event.target.files[0];
+  if (this.selectedFile) {
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+
+    this.pS.uploadImage(formData).subscribe((fileUrl: string) => {
+      this.form.patchValue({ himagenProducto: fileUrl });
+    });
+  }
+}*/
 
 aceptar(): void {
   if (this.form.valid) {
@@ -57,6 +71,8 @@ aceptar(): void {
     this.producto.nombreProducto = this.form.value.hnombreProducto;
     this.producto.marcaProducto = this.form.value.hmarcaProducto;
     this.producto.labProducto = this.form.value.hlabProducto;
+    //this.producto.imagenProducto = this.form.value.himagenProducto;
+    //console.log('Imagen del Producto:', this.producto.imagenProducto); // Agrega esta línea para ver la información
     if (this.edicion) {
       this.pS.update(this.producto).subscribe((data) => {
         this.pS.list().subscribe((data) => {
@@ -70,6 +86,7 @@ aceptar(): void {
         });
       });
     }
+    
   }
   this.router.navigate(['productos']);
 }
@@ -82,6 +99,7 @@ init() {
         hnombreProducto: new FormControl(data.nombreProducto),
         hmarcaProducto: new FormControl(data.marcaProducto),
         hlabProducto: new FormControl(data.labProducto),
+       // himagenProducto: new FormControl(data.imagenProducto)
 
       });
     });
