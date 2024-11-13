@@ -65,20 +65,6 @@ export class CreaeditardetalleordenComponent{
     this.oS.list().subscribe(data =>{
       this.listaOrdenCompra = data
     })
-
-    this.listaDOUnicosOC = this.listaDO.filter((value, index, self) =>
-      index === self.findIndex((t) => (
-        t.ocompra.idOrdenCompra === value.ocompra.idOrdenCompra
-      ))
-    );
-
-    this.listaDOUnicosPXB = this.listaDO.filter((value, index, self) =>
-      index === self.findIndex((t) => (
-        t.pxBotica.idProductoxBotica === value.pxBotica.idProductoxBotica
-      ))
-    );
-
- 
   }
 
   aceptar(): void {

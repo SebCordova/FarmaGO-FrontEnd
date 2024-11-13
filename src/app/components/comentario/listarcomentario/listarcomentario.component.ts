@@ -29,10 +29,10 @@ export class ListarcomentarioComponent {
 
   ngOnInit(): void {
     this.cS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idComentario - b.idComentario));
     });
     this.cS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idComentario - b.idComentario));
     });
   }
   eliminar(id: number) {
