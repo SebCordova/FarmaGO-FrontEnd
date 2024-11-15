@@ -18,6 +18,7 @@ import { DistritoService } from '../../../services/distrito.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditarbotica',
@@ -31,6 +32,8 @@ export class CreaeditarboticaComponent implements OnInit {
   botica: Botica = new Botica();
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
+  email: string = '';
 
   listaUsuarios: Usuario[] = [];
 
@@ -42,10 +45,13 @@ export class CreaeditarboticaComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private uS: UsuarioService,
-    private dS: DistritoService
+    private dS: DistritoService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -63,7 +69,14 @@ export class CreaeditarboticaComponent implements OnInit {
     });
 
     this.uS.list().subscribe(data =>{
-      this.listaUsuarios = data
+      if (this.role === 'Administrador'){
+        this.listaUsuarios = data
+      }
+      if (this.role === 'DBotica'){
+        const filtro = data.filter(u => u.correoUsuario == this.email)
+        this.listaUsuarios = filtro
+      }
+
     })
 
     this.dS.list().subscribe(data =>{

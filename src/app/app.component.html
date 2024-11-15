@@ -135,7 +135,7 @@
   <button mat-menu-item routerLink="/comentarios" style="color: black">
     Listar
   </button>
-  <button mat-menu-item routerLink="/comentarios/nuevo" style="color: black">
+  <button mat-menu-item routerLink="/comentarios/nuevo" style="color: black" *ngIf="isAdministrador() || isCliente()">
     Registrar
   </button>
 </mat-menu>

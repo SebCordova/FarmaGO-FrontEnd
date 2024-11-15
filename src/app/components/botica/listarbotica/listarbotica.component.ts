@@ -5,6 +5,7 @@ import { Botica } from '../../../models/Botica';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarbotica',
@@ -15,16 +16,33 @@ import { CommonModule } from '@angular/common';
 })
 export class ListarboticaComponent implements OnInit {
   dataSource: MatTableDataSource<Botica> = new MatTableDataSource();
+  role: string = '';
+  email: string = '';
 
-  displayedColumns:String[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'accion01', 'accion02']
+  displayedColumns:String[] = ['c1', 'c2', 'c3', 'c6', 'c7', 'accion01', 'accion02']
 
-  constructor(private bS: BoticaService) {}
+  constructor(private bS: BoticaService, private loginService:LoginService) {}
   ngOnInit(): void {
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
     this.bS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idBotica - b.idBotica));
+      if (this.role === 'Administrador'){
+        this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idBotica - b.idBotica));
+      }
+      if (this.role === 'DBotica'){
+        const filtro = data.filter(b => b.usuario.correoUsuario == this.email)
+        this.dataSource = new MatTableDataSource(filtro.sort((a, b) => a.idBotica - b.idBotica));
+      }
+
     });
     this.bS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idBotica - b.idBotica));
+      if (this.role === 'Administrador || Cliente'){
+        this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idBotica - b.idBotica));
+      }
+      if (this.role === 'DBotica'){
+        const filtro = data.filter(b => b.usuario.correoUsuario == this.email)
+        this.dataSource = new MatTableDataSource(filtro.sort((a, b) => a.idBotica - b.idBotica));
+      }
     });
   }
   eliminar(id: number) {
@@ -33,5 +51,16 @@ export class ListarboticaComponent implements OnInit {
         this.bS.setList(data);
       });
     });
+  }
+  isDBotica() {
+    return this.role === 'DBotica';
+  }
+
+  isCliente() {
+    return this.role === 'Cliente';
+  }
+
+  isAdministrador() {
+    return this.role === 'Administrador';
   }
 }

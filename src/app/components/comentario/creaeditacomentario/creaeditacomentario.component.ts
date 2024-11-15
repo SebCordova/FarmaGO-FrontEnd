@@ -23,6 +23,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProductoxboticaService } from '../../../services/productoxbotica.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditacomentario',
@@ -46,6 +47,9 @@ export class CreaeditacomentarioComponent implements OnInit {
   comen: Comentario = new Comentario();
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
+  email: string = '';
+  fechaHoy: Date = new Date(Date.now())
 
   listaProductoXBotica: ProductoxBotica[] = [];
   listaUsuario: Usuario[] = [];
@@ -56,10 +60,13 @@ export class CreaeditacomentarioComponent implements OnInit {
     private router: Router,
     private uS: UsuarioService,
     private pbS: ProductoxboticaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService:LoginService
   ) {}
 
   ngOnInit(): void {
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -69,12 +76,18 @@ export class CreaeditacomentarioComponent implements OnInit {
       (this.form = this.formBuilder.group({
         hcodigo: [''],
         hdetalle: ['', Validators.required],
-        hfecha: ['', Validators.required],
+        hfecha: [this.fechaHoy, Validators.required],
         hproxbot: ['', Validators.required],
         husuario: ['', Validators.required],
       }));
     this.uS.list().subscribe((data) => {
-      this.listaUsuario = data;
+      if (this.role === 'Administrador'){
+        this.listaUsuario = data;
+      }
+      if (this.role === 'Cliente'){
+        const filtro = data.filter(u => u.correoUsuario == this.email)
+        this.listaUsuario = filtro
+      }
     });
     this.pbS.list().subscribe((data) => {
       this.listaProductoXBotica = data;
@@ -111,7 +124,7 @@ export class CreaeditacomentarioComponent implements OnInit {
         this.form = new FormGroup({
           hcodigo: new FormControl(data.idComentario),
           hdetalle: new FormControl(data.detalleComentario),
-          hfecha: new FormControl(data.fechaComentario),
+          hfecha: new FormControl(this.fechaHoy),
           hproxbot: new FormControl(data.pxBotica.idProductoxBotica),
           husuario: new FormControl(data.usuario.idUsuario),
         });

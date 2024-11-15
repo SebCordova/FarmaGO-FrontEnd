@@ -113,7 +113,7 @@ export class CreaeditaordencompraComponent implements OnInit{
       this.oS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo:new FormControl(data.idOrdenCompra),
-          hfecha:new FormControl(this.fechaHoy),
+          hfecha:new FormControl(data.fechaOrden),
           hmonto:new FormControl(data.montoOrden),
           hestado:new FormControl(data.estadoOrden),
           husuario:new FormControl(data.usuario.idUsuario)

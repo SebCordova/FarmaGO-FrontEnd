@@ -16,34 +16,26 @@
                 <th mat-header-cell *matHeaderCellDef>Ubicacion</th>
                 <td mat-cell *matCellDef="let element">{{ element.ubicacionBotica }}</td>
             </ng-container>
-            <ng-container matColumnDef="c4">
-                <th mat-header-cell *matHeaderCellDef>Latitud</th>
-                <td mat-cell *matCellDef="let element">{{ element.latitudBotica }}</td>
-            </ng-container>
-            <ng-container matColumnDef="c5">
-                <th mat-header-cell *matHeaderCellDef>Longitud</th>
-                <td mat-cell *matCellDef="let element">{{ element.longitudBotica }}</td>
-            </ng-container>
             <ng-container matColumnDef="c6">
                 <th mat-header-cell *matHeaderCellDef>Distrito</th>
                 <td mat-cell *matCellDef="let element">{{ element.distrito.nomDistrito }}</td>
             </ng-container>
             <ng-container matColumnDef="c7">
                 <th mat-header-cell *matHeaderCellDef>Usuario</th>
-                <td mat-cell *matCellDef="let element">{{ element.usuario.correoUsuario }}</td>
+                <td mat-cell *matCellDef="let element">{{ element.usuario.nomUsuario }} {{ element.usuario.apelUsuario }}</td>
             </ng-container>
             <ng-container matColumnDef="accion01">
                 <th mat-header-cell *matHeaderCellDef>Eliminar</th>
                 <td
                   mat-cell
                   *matCellDef="let element"
-                  (click)="eliminar(element.idBotica)"
+                  (click)="eliminar(element.idBotica)" 
                 >
                   <mat-icon style="color: red;">delete</mat-icon>
                 </td>
             </ng-container>
             <ng-container matColumnDef="accion02">
-                <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+                <th mat-header-cell *matHeaderCellDef >Actualizar</th>
                 <td
                   mat-cell
                   *matCellDef="let element"
