@@ -92,4 +92,16 @@ export class ListarcomentarioComponent {
       });
     });
   }
+
+  isDBotica() {
+    return this.role === 'DBotica';
+  }
+
+  isCliente() {
+    return this.role === 'Cliente';
+  }
+
+  isAdministrador() {
+    return this.role === 'Administrador';
+  }
 }
