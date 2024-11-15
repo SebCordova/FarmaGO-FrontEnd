@@ -4,6 +4,7 @@ import { OrdenCompra } from '../../../models/OrdenCompra';
 import { OrdencompraService } from '../../../services/ordencompra.service';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarordencompra',
@@ -14,6 +15,8 @@ import { RouterLink } from '@angular/router';
 })
 export class ListarordencompraComponent {
   dataSource: MatTableDataSource<OrdenCompra> = new MatTableDataSource();
+  role: string = '';
+  email: string = '';
 
   displayedColumns: string[] = [
     'cd1',
@@ -25,14 +28,36 @@ export class ListarordencompraComponent {
     'accion02',
   ];
 
-  constructor(private oS: OrdencompraService) {}
+  constructor(private oS: OrdencompraService, private loginService: LoginService) {}
 
   ngOnInit(): void {
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
     this.oS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idOrdenCompra - b.idOrdenCompra));
+      if (this.role === 'Administrador'){
+        this.dataSource = new MatTableDataSource(
+          data.sort((a, b) => a.idOrdenCompra - b.idOrdenCompra)
+        );
+      }
+      if (this.role === 'Cliente'){
+        const filtro = data.filter(o => o.usuario.correoUsuario == this.email)
+        this.dataSource = new MatTableDataSource(
+          filtro.sort((a, b) => a.idOrdenCompra - b.idOrdenCompra)
+        );
+      }
     });
     this.oS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data.sort((a, b) => a.idOrdenCompra - b.idOrdenCompra));
+      if (this.role === 'Administrador'){
+        this.dataSource = new MatTableDataSource(
+          data.sort((a, b) => a.idOrdenCompra - b.idOrdenCompra)
+        );
+      }
+      if (this.role === 'Cliente'){
+        const filtro = data.filter(o => o.usuario.correoUsuario == this.email)
+        this.dataSource = new MatTableDataSource(
+          filtro.sort((a, b) => a.idOrdenCompra - b.idOrdenCompra)
+        );
+      }
     });
   }
   eliminar(id: number) {
