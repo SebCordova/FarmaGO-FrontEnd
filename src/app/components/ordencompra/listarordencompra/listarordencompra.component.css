@@ -1,0 +1,128 @@
+/* Restablecimiento de algunos estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Contenedor principal centrado */
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Estilos para las tarjetas */
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  /* Estilos de cada tarjeta (mat-card) */
+  .mat-card-example {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Efecto al pasar el ratón sobre la tarjeta */
+  .mat-card-example:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Cabecera de la tarjeta */
+  mat-card-header {
+    background-color: #f5f5f5;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  /* Imagen de la tarjeta */
+  mat-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Contenido de la tarjeta */
+  mat-card-content {
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Estilos de las acciones en la tarjeta (botones) */
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+  }
+  
+  /* Iconos dentro de las acciones */
+  mat-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  mat-icon:hover {
+    color: #ff5722; /* Color naranja para los iconos cuando se pasa el ratón */
+  }
+  
+  /* Estilos para el icono de eliminar */
+  mat-icon[style*="color: red"] {
+    color: #e53935;
+  }
+  
+  /* Estilos para el icono de editar */
+  mat-icon[style*="color: purple"] {
+    color: #9c27b0;
+  }
+  
+  /* Aseguramos que el enlace de editar se vea bien */
+  mat-icon[routerLink] {
+    text-decoration: none;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+  
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+  
+    mat-card-content {
+        font-size: 0.85rem;
+    }
+  }

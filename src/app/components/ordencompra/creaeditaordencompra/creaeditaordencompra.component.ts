@@ -37,6 +37,7 @@ export class CreaeditaordencompraComponent implements OnInit{
   edicion: boolean = false;
   role: string = '';
   email: string = '';
+  fechaHoy: Date = new Date(Date.now())
 
   listaEstados: { value: string; viewValue: string }[] = [
     { value: 'Completada', viewValue: 'Completada' },
@@ -66,7 +67,7 @@ export class CreaeditaordencompraComponent implements OnInit{
     }),
       (this.form = this.formBuilder.group({
       hcodigo: [''],
-      hfecha: ['', Validators.required],
+      hfecha: [this.fechaHoy, Validators.required],
       hmonto: ['', Validators.required],
       hestado: ['', Validators.required],
       husuario: ['', Validators.required],
@@ -112,7 +113,7 @@ export class CreaeditaordencompraComponent implements OnInit{
       this.oS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           hcodigo:new FormControl(data.idOrdenCompra),
-          hfecha:new FormControl(data.fechaOrden),
+          hfecha:new FormControl(this.fechaHoy),
           hmonto:new FormControl(data.montoOrden),
           hestado:new FormControl(data.estadoOrden),
           husuario:new FormControl(data.usuario.idUsuario)

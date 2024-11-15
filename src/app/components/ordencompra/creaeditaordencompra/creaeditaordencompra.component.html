@@ -15,11 +15,11 @@
 
         <mat-form-field>
             <mat-label>Fecha</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
+            <input matInput [matDatepicker]="picker" readonly formControlName="hfecha" />
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
-              [for]="picker">
+              [for]="picker" disabled>
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>

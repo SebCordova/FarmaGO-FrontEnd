@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listardetalleorden',
@@ -18,6 +19,9 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 export class ListardetalleordenComponent {
 
   dataDO= new MatTableDataSource<any>();
+
+  role: string = '';
+  email: string = '';
   
       // Datos para la paginación
       totalCards: number=this.dataDO.data.length; // Número total de productos
@@ -26,26 +30,46 @@ export class ListardetalleordenComponent {
       currentPage: number = 0; // Página actual
       
 
-  constructor(private doS:DetalleordenService){
+  constructor(private doS:DetalleordenService, private loginService:LoginService){
    }
 
   ngOnInit(): void {
-
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
 
     this.doS.list().subscribe((data) => {
-      console.log(data);
-      this.dataDO.data = data.sort((a, b) => a.idDetalleOrden - b.idDetalleOrden);
-      this.totalCards=this.dataDO.data.length; // Número total de productos
-      this.updatePageData();
+      if (this.role === 'Administrador'){
+        console.log(data);
+        this.dataDO.data = data.sort((a, b) => a.idDetalleOrden - b.idDetalleOrden);
+        this.totalCards=this.dataDO.data.length; // Número total de productos
+        this.updatePageData();
+      }
+      if (this.role === 'Cliente'){
+        const filtro = data.filter(d => d.ocompra.usuario.correoUsuario == this.email)
+        console.log(filtro);
+        this.dataDO.data = filtro.sort((a, b) => a.idDetalleOrden - b.idDetalleOrden);
+        this.totalCards=this.dataDO.data.length; // Número total de productos
+        this.updatePageData();
+      }
+
     });
 
      
     // O si necesitas traer la segunda lista también
     this.doS.getList().subscribe((data) => {
-      this.dataDO.data = data.sort((a, b) => a.idDetalleOrden - b.idDetalleOrden);
-      this.totalCards=this.dataDO.data.length; // Número total de productos
-      this.updatePageData();
-
+      if (this.role === 'Administrador'){
+        console.log(data);
+        this.dataDO.data = data.sort((a, b) => a.idDetalleOrden - b.idDetalleOrden);
+        this.totalCards=this.dataDO.data.length; // Número total de productos
+        this.updatePageData();
+      }
+      if (this.role === 'Cliente'){
+        const filtro = data.filter(d => d.ocompra.usuario.correoUsuario == this.email)
+        console.log(filtro);
+        this.dataDO.data = filtro.sort((a, b) => a.idDetalleOrden - b.idDetalleOrden);
+        this.totalCards=this.dataDO.data.length; // Número total de productos
+        this.updatePageData();
+      }
     });
     
 
