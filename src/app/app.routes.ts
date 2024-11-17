@@ -47,6 +47,7 @@ export const routes: Routes = [
         component: CreaeditarususarioComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'boticas',
