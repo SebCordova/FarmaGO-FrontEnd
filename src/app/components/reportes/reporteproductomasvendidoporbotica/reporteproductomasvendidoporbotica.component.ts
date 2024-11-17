@@ -31,7 +31,7 @@ export class ReporteproductomasvendidoporboticaComponent {
   
       this.barChartData = [
         {
-          data: data.map((item) => item.productoVendido),
+          data: data.map((item) => item.cantidad),
         
           backgroundColor: [
            /* '#280303',
