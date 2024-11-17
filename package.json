@@ -26,6 +26,7 @@
     "@auth0/angular-jwt": "^5.2.0",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.6",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "express": "^4.18.2",
     "ng2-charts": "^6.0.1",
     "rxjs": "~7.8.0",
