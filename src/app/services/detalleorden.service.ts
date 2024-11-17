@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { DetalleOrden } from '../models/DetalleOrden';
+import { ProductoVendidoxBoticaDTO } from '../models/ProductoVendidoxBoticaDTO';
+import { BoticasConMayoresVentasDTO } from '../models/BoticaConMayoresVentasDTO';
 
 const base_url = environment.base;
 
@@ -44,6 +46,18 @@ export class DetalleordenService {
 
   update(detalleord: DetalleOrden) {
     return this.http.put(this.url, detalleord);
+  }
+
+  getCantidad():Observable<ProductoVendidoxBoticaDTO[]>{
+    return this.http.get<ProductoVendidoxBoticaDTO[]>(
+      `${this.url}/productovendidoxbotica`
+    )
+  }
+
+  getBoticasMayorVenta():Observable<BoticasConMayoresVentasDTO[]>{
+    return this.http.get<BoticasConMayoresVentasDTO[]>(
+      `${this.url}/boticasconmayoresventas`
+    )
   }
 }
 
