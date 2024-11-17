@@ -10,7 +10,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
   login(request: JwtRequest){
-    return this.http.post('http://localhost:8080/login', request);
+    return this.http.post('https://farmago-2zoe.onrender.com/login', request);
   }
   verificar() {
     let token = sessionStorage.getItem('token');

@@ -22,14 +22,13 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(withInterceptorsFromDi()),
-    provideHttpClient(withFetch()),
     provideAnimationsAsync(),
     importProvidersFrom(
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:8080'],
-          disallowedRoutes: ['http://localhost:8081/login/forget'],
+          allowedDomains: ['farmago-2zoe.onrender.com'],
+          disallowedRoutes: ['farmago-2zoe.onrender.com/login/forget'],
         },
       })
     ),
