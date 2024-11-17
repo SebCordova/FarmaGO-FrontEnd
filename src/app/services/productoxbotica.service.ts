@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ProductoxBotica } from '../models/ProductoxBotica';
 import { HttpClient } from '@angular/common/http';
-
+import { ProductoVencidoDTO } from '../models/ProductoVencidoDTO';
 
 const base_url = environment.base;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductoxboticaService {
-
   private url = `${base_url}/productoxBotica`;
   private listaCambio = new Subject<ProductoxBotica[]>();
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {}
 
   list() {
     return this.http.get<ProductoxBotica[]>(this.url);
@@ -45,5 +43,10 @@ export class ProductoxboticaService {
   update(productxboti: ProductoxBotica) {
     return this.http.put(this.url, productxboti);
   }
-}
 
+  getVencidos(id: number): Observable<ProductoVencidoDTO[]> {
+    return this.http.get<ProductoVencidoDTO[]>(
+      `${this.url}/productosvencidos?idBotica=${id}`
+    );
+  }
+}

@@ -20,6 +20,7 @@ import { Producto } from '../../../models/Producto';
 import { Botica } from '../../../models/Botica';
 import { ProductoService } from '../../../services/producto.service';
 import { BoticaService } from '../../../services/botica.service';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditarproductoxbotica',
@@ -44,6 +45,9 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
   edicion: boolean = false;
   listaProductos: Producto[] = [];
   listaBoticas: Botica[] = [];
+  role: string = '';
+  email: string = '';
+  fechaHoy: Date = new Date(Date.now());
 
   constructor(
     private pxbS: ProductoxboticaService,
@@ -51,16 +55,18 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
     private router: Router, //importante este router NO es el Express
     private route: ActivatedRoute,
     private pS: ProductoService,
-    private bS: BoticaService
+    private bS: BoticaService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
       //Capturar los datos que vienen de la lista s
       this.init();
-      
     });
 
     this.form = this.formBuilder.group({
@@ -77,7 +83,15 @@ export class CreaeditarproductoxboticaComponent implements OnInit {
     });
 
     this.bS.list().subscribe((data) => {
-      this.listaBoticas = data;
+      if (this.role === 'Administrador') {
+        this.listaBoticas = data;
+      }
+      if (this.role === 'DBotica') {
+        const filtro = data.filter(
+          (b) => b.usuario.correoUsuario == this.email
+        );
+        this.listaBoticas = filtro;
+      }
     });
   }
 

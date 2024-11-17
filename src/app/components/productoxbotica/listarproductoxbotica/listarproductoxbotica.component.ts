@@ -37,6 +37,7 @@ export class ListarproductoxboticaComponent {
 
   datapxb = new MatTableDataSource<any>();
   role: string = '';
+  email: string = '';
 
   verificar() {
     this.role = this.loginService.showRole();
@@ -62,21 +63,44 @@ export class ListarproductoxboticaComponent {
   currentPage: number = 0; // Página actual
 
   ngOnInit(): void {
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
     this.pxbS.list().subscribe((data) => {
-      this.datapxb.data = data.sort(
-        (a, b) => a.idProductoxBotica - b.idProductoxBotica
-      );
-      this.totalCards = this.datapxb.data.length; // Número total de productos
-      this.updatePageData();
+      if (this.role === 'Administrador' || 'Cliente'){
+        this.datapxb.data = data.sort(
+          (a, b) => a.idProductoxBotica - b.idProductoxBotica
+        );
+        this.totalCards = this.datapxb.data.length; // Número total de productos
+        this.updatePageData();
+      }
+      if (this.role == 'DBotica'){
+        const filtro = data.filter(p => p.botica.usuario.correoUsuario == this.email)
+        this.datapxb.data = filtro.sort(
+          (a, b) => a.idProductoxBotica - b.idProductoxBotica
+        );
+        this.totalCards = this.datapxb.data.length; // Número total de productos
+        this.updatePageData();
+      }
+
     });
 
     // O si necesitas traer la segunda lista también
     this.pxbS.getList().subscribe((data) => {
-      this.datapxb.data = data.sort(
-        (a, b) => a.idProductoxBotica - b.idProductoxBotica
-      );
-      this.totalCards = this.datapxb.data.length; // Número total de productos
-      this.updatePageData();
+      if (this.role === 'Administrador' || 'Cliente'){
+        this.datapxb.data = data.sort(
+          (a, b) => a.idProductoxBotica - b.idProductoxBotica
+        );
+        this.totalCards = this.datapxb.data.length; // Número total de productos
+        this.updatePageData();
+      }
+      if (this.role == 'DBotica'){
+        const filtro = data.filter(p => p.botica.usuario.correoUsuario == this.email)
+        this.datapxb.data = filtro.sort(
+          (a, b) => a.idProductoxBotica - b.idProductoxBotica
+        );
+        this.totalCards = this.datapxb.data.length; // Número total de productos
+        this.updatePageData();
+      }
     });
 
     ////----------------------Paginación------------------//

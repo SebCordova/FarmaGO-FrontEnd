@@ -12,6 +12,7 @@ import { OrdenCompra } from '../../../models/OrdenCompra';
 import { ProductoxBotica } from '../../../models/ProductoxBotica';
 import { OrdencompraService } from '../../../services/ordencompra.service';
 import { ProductoxboticaService } from '../../../services/productoxbotica.service';
+import { LoginService } from '../../../services/login.service';
 
 
 @Component({
@@ -27,6 +28,8 @@ export class CreaeditardetalleordenComponent{
   do: DetalleOrden = new DetalleOrden();
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
+  email: string = '';
 
   listaOrdenCompra: OrdenCompra[] = []
   listaProductoxBotica: ProductoxBotica[] = []
@@ -36,11 +39,14 @@ export class CreaeditardetalleordenComponent{
     private router: Router,//importante este router NO es el Express
     private route: ActivatedRoute,
     private oS: OrdencompraService,
-    private pS: ProductoxboticaService
+    private pS: ProductoxboticaService,
+    private loginService: LoginService
   ) {}
 
 
   ngOnInit(): void {
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -63,7 +69,14 @@ export class CreaeditardetalleordenComponent{
     })
 
     this.oS.list().subscribe(data =>{
-      this.listaOrdenCompra = data
+      if (this.role === 'Administrador'){
+        this.listaOrdenCompra = data
+      }
+      if (this.role === 'Cliente'){
+        const filtro = data.filter(o => o.usuario.correoUsuario == this.email)
+        this.listaOrdenCompra = filtro
+      }
+
     })
   }
 

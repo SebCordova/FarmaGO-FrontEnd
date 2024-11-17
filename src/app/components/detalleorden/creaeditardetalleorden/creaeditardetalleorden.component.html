@@ -6,7 +6,7 @@
         <form [formGroup]="form"  (submit)="aceptar()" style="text-align: center;">
             <mat-form-field class="example-full-width" *ngIf="edicion">
                 <mat-label>ID</mat-label>
-                <input matInput formControlName="hidDetalleOrden">
+                <input matInput formControlName="hidDetalleOrden" readonly>
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">

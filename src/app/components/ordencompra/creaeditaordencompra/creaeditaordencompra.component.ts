@@ -12,6 +12,7 @@ import { Usuario } from '../../../models/Usuario';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditaordencompra',
@@ -34,6 +35,9 @@ export class CreaeditaordencompraComponent implements OnInit{
   orden: OrdenCompra = new OrdenCompra();
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
+  email: string = '';
+  fechaHoy: Date = new Date(Date.now())
 
   listaEstados: { value: string; viewValue: string }[] = [
     { value: 'Completada', viewValue: 'Completada' },
@@ -48,10 +52,13 @@ export class CreaeditaordencompraComponent implements OnInit{
     private oS: OrdencompraService,
     private router: Router,
     private uS: UsuarioService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.role = this.loginService.showRole();
+    this.email = this.loginService.showEmail();
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -60,13 +67,20 @@ export class CreaeditaordencompraComponent implements OnInit{
     }),
       (this.form = this.formBuilder.group({
       hcodigo: [''],
-      hfecha: ['', Validators.required],
+      hfecha: [this.fechaHoy, Validators.required],
       hmonto: ['', Validators.required],
       hestado: ['', Validators.required],
       husuario: ['', Validators.required],
     }));
     this.uS.list().subscribe(data=>{
-      this.listaUsuarios=data
+      if (this.role === 'Administrador'){
+        this.listaUsuarios=data
+      }
+      if (this.role === 'Cliente'){
+        const filtro = data.filter(u => u.correoUsuario == this.email)
+        this.listaUsuarios=filtro
+      }
+
     })
   }
 

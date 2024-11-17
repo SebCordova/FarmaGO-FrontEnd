@@ -6,7 +6,7 @@
         <form [formGroup]="form"  (submit)="aceptar()" style="text-align: center;">
             <mat-form-field class="example-full-width" *ngIf="edicion">
                 <mat-label>ID</mat-label>
-                <input matInput formControlName="hidProductoxBotica">
+                <input matInput readonly formControlName="hidProductoxBotica">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
@@ -17,7 +17,7 @@
 
             <mat-form-field>
                 <mat-label>Fecha de Emisión</mat-label>
-                <input matInput [matDatepicker]="picker1" placeholder="MM/DD/YYYY" formControlName="hfechaemision">
+                <input matInput [matDatepicker]="picker1" placeholder="MM/DD/YYYY" [max]="fechaHoy" formControlName="hfechaemision">
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
@@ -26,7 +26,7 @@
 
             <mat-form-field>
                 <mat-label>Fecha de Vencimiento</mat-label>
-                <input matInput [matDatepicker]="picker2" placeholder="MM/DD/YYYY" formControlName="hfechavencimiento">
+                <input matInput [matDatepicker]="picker2" placeholder="MM/DD/YYYY" [min]="fechaHoy" formControlName="hfechavencimiento">
                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>

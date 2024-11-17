@@ -21,8 +21,10 @@ import { HomeComponent } from './components/home/home.component';
 import { ComentarioComponent } from './components/comentario/comentario.component';
 import { CreaeditacomentarioComponent } from './components/comentario/creaeditacomentario/creaeditacomentario.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReportevencidosComponent } from './components/reportes/reportevencidos/reportevencidos.component';
 import { ReporteproductomasvendidoporboticaComponent } from './components/reportes/reporteproductomasvendidoporbotica/reporteproductomasvendidoporbotica.component';
 import { ReporteboticasconmayoresventasComponent } from './components/reportes/reporteboticasconmayoresventas/reporteboticasconmayoresventas.component';
+
 
 
 export const routes: Routes = [
@@ -48,6 +50,7 @@ export const routes: Routes = [
         component: CreaeditarususarioComponent,
       },
     ],
+    canActivate: [seguridadGuard],
   },
   {
     path: 'boticas',
@@ -176,6 +179,11 @@ export const routes: Routes = [
   component: ReportesComponent,
   children: [
     {
+
+      path: 'vencidos',
+      component: ReportevencidosComponent
+    },
+    {
       path: 'Productosomasvendidoporbotica',
       component: ReporteproductomasvendidoporboticaComponent,
     },
@@ -184,7 +192,6 @@ export const routes: Routes = [
       component: ReporteboticasconmayoresventasComponent,
     },
   ],
-  
   canActivate: [seguridadGuard],
 },
 {

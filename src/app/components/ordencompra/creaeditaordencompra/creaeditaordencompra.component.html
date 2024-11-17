@@ -6,7 +6,7 @@
           <mat-form-field class="example-full-width" *ngIf="edicion">
           <mat-label>Codigo Orden Compra</mat-label>
           <input
-            matInput
+            matInput readonly
             placeholder="Ejem. 1"
             formControlName="hcodigo"
           />
@@ -15,11 +15,11 @@
 
         <mat-form-field>
             <mat-label>Fecha</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
+            <input matInput [matDatepicker]="picker" readonly formControlName="hfecha" />
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
-              [for]="picker">
+              [for]="picker" disabled>
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -46,7 +46,7 @@
           <mat-label>Usuario</mat-label>
           <mat-select formControlName="husuario">
             @for (food of listaUsuarios; track food) {
-            <mat-option [value]="food.idUsuario">{{ food.nomUsuario }}</mat-option>
+            <mat-option [value]="food.idUsuario">{{ food.nomUsuario }} {{ food.apelUsuario }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
