@@ -27,8 +27,8 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['farmago-2zoe.onrender.com'],
-          disallowedRoutes: ['farmago-2zoe.onrender.com/login/forget'],
+          allowedDomains: ['localhost:8080'],
+          disallowedRoutes: ['http://localhost:8081/login/forget'],
         },
       })
     ),
