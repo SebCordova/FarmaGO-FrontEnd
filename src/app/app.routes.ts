@@ -21,6 +21,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ComentarioComponent } from './components/comentario/comentario.component';
 import { CreaeditacomentarioComponent } from './components/comentario/creaeditacomentario/creaeditacomentario.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReporteproductomasvendidoporboticaComponent } from './components/reportes/reporteproductomasvendidoporbotica/reporteproductomasvendidoporbotica.component';
+import { ReporteboticasconmayoresventasComponent } from './components/reportes/reporteboticasconmayoresventas/reporteboticasconmayoresventas.component';
 
 
 export const routes: Routes = [
@@ -172,6 +174,17 @@ export const routes: Routes = [
 {
   path: 'reportes',
   component: ReportesComponent,
+  children: [
+    {
+      path: 'Productosomasvendidoporbotica',
+      component: ReporteproductomasvendidoporboticaComponent,
+    },
+    {
+      path: 'Boticasconmayoresventas',
+      component: ReporteboticasconmayoresventasComponent,
+    },
+  ],
+  
   canActivate: [seguridadGuard],
 },
 {
