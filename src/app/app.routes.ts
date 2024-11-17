@@ -24,6 +24,8 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { ReportevencidosComponent } from './components/reportes/reportevencidos/reportevencidos.component';
 import { ReporteproductomasvendidoporboticaComponent } from './components/reportes/reporteproductomasvendidoporbotica/reporteproductomasvendidoporbotica.component';
 import { ReporteboticasconmayoresventasComponent } from './components/reportes/reporteboticasconmayoresventas/reporteboticasconmayoresventas.component';
+import { RepoteMarcaMasRegistradaComponent } from './components/reportes/repote-marca-mas-registrada/repote-marca-mas-registrada.component';
+import { RepoteMayorComentarioComponent } from './components/reportes/repote-mayor-comentario/repote-mayor-comentario.component';
 
 
 
@@ -190,6 +192,14 @@ export const routes: Routes = [
     {
       path: 'Boticasconmayoresventas',
       component: ReporteboticasconmayoresventasComponent,
+    },
+    {
+      path: 'MarcaMasResgitrada',
+      component: RepoteMarcaMasRegistradaComponent,
+    },
+    {
+      path: 'MayorComentarioComponent',
+      component: RepoteMayorComentarioComponent,
     },
   ],
   canActivate: [seguridadGuard],

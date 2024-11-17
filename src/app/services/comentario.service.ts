@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Comentario } from '../models/Comentario';
 import { HttpClient } from '@angular/common/http';
+import { UsuarioComentarioDTO } from '../models/UsuarioComentarioDTO';
 
 const base_url = environment.base;
 
@@ -42,5 +43,8 @@ export class ComentarioService {
 
   update(comentario: Comentario) {
     return this.http.put(this.url, comentario);
+  }
+  getComentarioUsuario():Observable<UsuarioComentarioDTO[]>{
+    return this.http.get<UsuarioComentarioDTO[]>(`${this.url}/usuariosmascomentarios`)
   }
 }

@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Producto } from '../models/Producto';
 import { HttpClient } from '@angular/common/http';
+import { MarcaRegistradaDTO } from '../models/MarcaRegistradaDTO';
 
 
 const base_url = environment.base;
@@ -47,4 +48,7 @@ export class ProductoService {
  /* uploadImage(file: FormData): Observable<string> {
     return this.http.post<string>( `${this.url}/upload`, file);
   }*/
+    getMarcaMasRegistrada():Observable<MarcaRegistradaDTO[]>{
+         return this.http.get<MarcaRegistradaDTO[]>(`${this.url}/marcasmasregistradas`)
+       }
 }
